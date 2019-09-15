@@ -1,0 +1,22 @@
+to activate the virtual environment
+    source activate [virtenv_name]
+
+to create a project
+    django-admin startproject [project_name]
+
+to create and app:
+    python manage.py startapp [app_name]
+
+to register the app
+    setting-> installed_apps
+
+to add the view
+    go to view and create the function name with parameter the request:
+    def [func_name](request):
+        return HttpResponse("index page")
+
+to add the url
+    go to urls and add:
+    from [app_name] import views
+    path('',views.[func_name]) - to add in the urlpatterns
+
