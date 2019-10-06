@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'test_app',
     # 'blog',
     'blog.apps.BlogConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [

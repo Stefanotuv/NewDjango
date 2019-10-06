@@ -20,3 +20,46 @@ to add the url
     from [app_name] import views
     path('',views.[func_name]) - to add in the urlpatterns
 
+to do the migration
+    python manage.py makemigrations
+
+to do the migration 2
+    python manage.py migrate
+
+to add a superuser (need to fo migration first)
+    python manage.py createsuperuser
+    stefanotuveri, ste.tuveri@gmail.com
+
+to view the SQL created by yhe migration
+    python manage.py sqlmigrate [app_name] [number of the migration]
+
+
+Add data for the db (on python console):
+    from blog.models import Post
+    from django.contrib.auth.models import User
+    Post.objects.all()
+    User.objects.all()
+
+    post = Post(title='First Post',content='First Post Content',author=user)
+    post.save()
+
+    user.post_set.all() // to query all posts from a user being the user a foreign key on the post
+    // note the user is the object not the class
+
+    user.post_set.create(title='First Post',content='First Post Content')
+    //create directly a post for that user
+
+Add user app:
+     python manage.py startapp users
+     register the app: 'users.apps.UsersConfig'
+
+
+
+
+
+
+
+
+
+
+
