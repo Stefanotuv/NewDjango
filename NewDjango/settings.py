@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # 'blog',
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
+    'crispy_forms', # template to improve forms rendering
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+CRISPY_TEMPLATE_PACK='bootstrap4' # use bootstrap4 as template pack for the forms
+
+LOGIN_REDIRECT_URL = 'blog-home'
