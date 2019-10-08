@@ -129,6 +129,10 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+MEDIA_URL = '/media/'
+
 CRISPY_TEMPLATE_PACK='bootstrap4' # use bootstrap4 as template pack for the forms
 
 LOGIN_REDIRECT_URL = 'blog-home'
