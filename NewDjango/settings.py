@@ -132,3 +132,5 @@ STATICFILES_DIRS = (
 CRISPY_TEMPLATE_PACK='bootstrap4' # use bootstrap4 as template pack for the forms
 
 LOGIN_REDIRECT_URL = 'blog-home'
+
+LOGIN_URL = 'users-login'
