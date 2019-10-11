@@ -2,6 +2,7 @@ from django.db import models
 
 from django.contrib.auth.models import User
 from PIL import Image
+from django.contrib.auth.models import AbstractBaseUser
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
@@ -19,3 +20,11 @@ class Profile(models.Model):
             output_size = (300,300)
             img.thumbnail(output_size)
             img = Image.open(self.image.path)
+
+# to make the email unique need to expand the AbstractBaseUser class
+class MyUser(AbstractBaseUser):
+    email = models.EmailField(
+        verbose_name='email address',
+        max_length=255,
+        unique=True,
+    )

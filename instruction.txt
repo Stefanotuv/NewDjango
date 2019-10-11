@@ -55,6 +55,12 @@ Add user app:
 
 
 
+export EMAIL_USER='test.for.stefano@gmail.com'
+export EMAIL_PASS='Pinocchi0'
+
+
+
+
 
 
 
