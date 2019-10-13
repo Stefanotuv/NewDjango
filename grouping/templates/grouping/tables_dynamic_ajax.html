@@ -106,24 +106,23 @@
 
 {% endblock javascripts %}
 {% block jq%}
+    <script type="text/javascript" language="javascript" class="init">
+        $(document).ready( function () {
+                $('#dy-table').dataTable({
 
-        <script type="text/javascript" language="javascript" class="init">
-    $(document).ready( function () {
-        $('#dy-table').dataTable({
+                     ajax: {
+                            url: '/grouping/api/table-posts/',
+                            dataSrc: ''
+                        },
+                         columns: [
+                            { data: 'title' },
+                            { data: 'content' },
+                            { data: 'author' },
+                            { data: 'date_posted' }
+                        ]
 
-             ajax: {
-                    url: '/grouping/api/table-posts/',
-                    dataSrc: ''
-                },
-                 columns: [
-                    { data: 'title' },
-                    { data: 'content' },
-                    { data: 'author' },
-                    { data: 'date_posted' }
-                ]
-
-        });
-} );
+                });
+        } );
 
 
         </script>
