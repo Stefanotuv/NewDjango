@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'crispy_forms', # template to improve forms rendering
+    'grouping.apps.GroupingConfig'
 ]
 
 MIDDLEWARE = [

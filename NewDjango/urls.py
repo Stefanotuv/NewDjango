@@ -29,6 +29,7 @@ urlpatterns = [
 
     path('blog/', include('blog.urls')),
     path('users/', include('users.urls')),
+    path('grouping/',include('grouping.urls'))
 ]
 
 if settings.DEBUG:

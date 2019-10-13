@@ -14,6 +14,7 @@ class Post(models.Model):
     # timestamp = models.DateTimeField(auto_now=True,auto_now_add=False)
 
     date_posted = models.DateTimeField(default=timezone.now,auto_now_add=False)
+
     author = models.ForeignKey(User, on_delete=models.CASCADE) # delete the user would delete the post
     updated = models.DateTimeField(auto_now=False,auto_now_add=True)
 
