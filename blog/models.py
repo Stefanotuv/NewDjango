@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-
+from datetime import datetime
 
 # Create your models here.
 
@@ -21,5 +21,13 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def to_dictionary(self):
+        output = {
+            "title":self.title,
+            "content":self.content[:12],
+            "author":self.author.username,
+            "date_posted":self.date_posted.strftime("%d-%b-%Y (%H:%M:%S.%f)"),
+        }
+        return output
 
 
