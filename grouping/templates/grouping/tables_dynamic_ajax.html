@@ -106,13 +106,30 @@
 
 {% endblock javascripts %}
 {% block jq%}
-    <script type="text/javascript" language="javascript" class="init">
+     <script type="text/javascript" language="javascript" class="init">
+        var returned_data;
+        returned_data = $.ajax({
+            method: 'GET',
+            url:'/grouping/api/table-posts/',
+            success: function (data) {
+                console.log("success");
+
+            },
+            error: function(error_data){
+                console.log("error_data");
+            }
+            }
+        )
+        console.log("returned_data");
+        console.log(returned_data);
+
         $(document).ready( function () {
                 $('#dy-table').dataTable({
-
+                    {#serverSide: true,#}
                      ajax: {
                             url: '/grouping/api/table-posts/',
-                            dataSrc: ''
+                            dataSrc: '',
+                            {#columns: ['title','content','author','date_posted']#}
                         },
                          columns: [
                             { data: 'title' },
@@ -122,7 +139,7 @@
                         ]
 
                 });
-        } );
+        } )
 
 
         </script>

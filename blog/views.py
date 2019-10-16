@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from .models import Post
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from rest_framework import generics
+
+
 from django.views.generic import (
     ListView,
     DetailView,
