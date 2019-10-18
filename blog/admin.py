@@ -3,8 +3,6 @@ from .models import Post
 
 # Register your models here.
 
-# admin.site.register(Post)
-
 class PostModelAdmin(admin.ModelAdmin):
     list_display = ["title","updated","date_posted"]
     list_display_links = ["updated","date_posted"]

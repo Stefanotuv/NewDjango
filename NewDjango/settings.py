@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'crispy_forms', # template to improve forms rendering
     'grouping.apps.GroupingConfig',
-    'rest_framework'
+    'rest_framework',
+    'gproject.apps.GprojectConfig',
 ]
 
 MIDDLEWARE = [

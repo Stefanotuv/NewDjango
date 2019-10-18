@@ -29,7 +29,8 @@ urlpatterns = [
 
     path('blog/', include('blog.urls')),
     path('users/', include('users.urls')),
-    path('grouping/',include('grouping.urls'))
+    path('grouping/',include('grouping.urls')),
+    path('gproject/',include('gproject.urls'))
 ]
 
 if settings.DEBUG:
