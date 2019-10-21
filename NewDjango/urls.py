@@ -24,13 +24,14 @@ urlpatterns = [
     path('',views.index, name = 'index'),
     path('test_app',include('test_app_2.urls')),
 
-    # path('',views.index),
+    path('',views.index),
     path('admin/', admin.site.urls),
-
+    #
     path('blog/', include('blog.urls')),
     path('users/', include('users.urls')),
     path('grouping/',include('grouping.urls')),
-    path('gproject/',include('gproject.urls'))
+    path('gproject/',include('gproject.urls')),
+    path('api/',include('api.urls'))
 ]
 
 if settings.DEBUG:

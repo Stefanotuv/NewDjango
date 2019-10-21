@@ -1,24 +1,92 @@
-{% extends "blog/base.html" %}
-{% load crispy_forms_tags %}
-{% block bodyblock %}
-    <div class="content-section">
-        <form method="POST">
+{% extends "gproject/base_site.html" %}
+
+{% block title %} Login {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+  <!-- Animate.css -->
+  <link href="/static/vendors/animate.css/animate.min.css" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block body_class %}login{% endblock body_class %}
+
+{% block body %}
+  <div>
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+
+    <div class="login_wrapper">
+      <div class="animate form login_form">
+        <section class="login_content">
+          <form  method="POST">
             {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Join Today</legend>
-{#                {{ form.as_p }}#}
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Log In</button>
-
+            <h1>Login to Groping Project</h1>
+            <div>
+              <input type="text" class="form-control" placeholder="Username" required="" />
             </div>
-        </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                Do you need an account? <a class="ml-2" href="{% url 'users-register' %}">Sign Up</a>
-            </small>
+            <div>
+              <input type="password" class="form-control" placeholder="Password" required="" />
+            </div>
+            <div>
+              <a class="btn btn-default submit" href="{% url  'users-login ' %}">Log in</a>
+              <a class="reset_pass" href="#">Lost your password?</a>
+            </div>
 
-        </div>
+            <div class="clearfix"></div>
+
+            <div class="separator">
+              <p class="change_link">New to site?
+                <a href="{% url 'users-register' %}" class="to_register"> Create Account </a>
+              </p>
+
+              <div class="clearfix"></div>
+              <br />
+
+              <div>
+                <h1><i class="fa fa-users" aria-hidden="true"></i> the grouping project </h1>
+                <p>Privacy and Terms apply</p>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+
+      <div id="register" class="animate form registration_form">
+        <section class="login_content">
+          <form>
+            <h1>Create Account</h1>
+            <div>
+              <input type="text" class="form-control" placeholder="Username" required="" />
+            </div>
+            <div>
+              <input type="email" class="form-control" placeholder="Email" required="" />
+            </div>
+            <div>
+              <input type="password" class="form-control" placeholder="Password" required="" />
+            </div>
+            <div>
+              <a class="btn btn-default submit" href="index.html">Submit</a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="separator">
+              <p class="change_link">Already a member ?
+                <a href="#signin" class="to_register"> Log in </a>
+              </p>
+
+              <div class="clearfix"></div>
+              <br />
+
+              <div>
+                <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
     </div>
-{% endblock bodyblock %}
+  </div>
+{% endblock body %}
+

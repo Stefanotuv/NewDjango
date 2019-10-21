@@ -38,14 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.urls',
     'test_app',
-    # 'blog',
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'crispy_forms', # template to improve forms rendering
     'grouping.apps.GroupingConfig',
     'rest_framework',
     'gproject.apps.GprojectConfig',
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [
@@ -138,7 +139,7 @@ MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK='bootstrap4' # use bootstrap4 as template pack for the forms
 
-LOGIN_REDIRECT_URL = 'blog-home'
+LOGIN_REDIRECT_URL = 'grouping-home'
 
 LOGIN_URL = 'users-login'
 
