@@ -1,0 +1,80 @@
+{% extends "gproject/base_site.html" %}
+{% load crispy_forms_tags %}
+{% block title %} Elaborations Summary {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+  <link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block content %}
+  <div class="right_col" role="main">
+    <div class="">
+      <div class="page-title">
+
+      </div>
+      <div class="clearfix"></div>
+
+      <div class="row">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Elaboration Wizards</h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Settings 1</a>
+                    </li>
+                    <li><a href="#">Settings 2</a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+
+              <!-- Smart Wizard -->
+                <div id="wizard1">
+                  <h3>Personal Information</h3>
+                  <section>
+                    <p>Try the keyboard navigation by clicking arrow left or right!</p>
+                  </section>
+                  <h3>Billing Information</h3>
+                  <section>
+                    <p>Wonderful transition effects.</p>
+                  </section>
+                  <h3>Payment Details</h3>
+                  <section>
+                    <p>The next and previous buttons help you to navigate through your content.</p>
+                  </section>
+                </div>
+              <!-- End SmartWizard Content -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super}}
+  <!-- jQuery Smart Wizard -->
+  <script src="/static/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+{% endblock javascripts %}
+{% block jq%}
+
+{% endblock jq%}

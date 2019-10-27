@@ -139,7 +139,7 @@ MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK='bootstrap4' # use bootstrap4 as template pack for the forms
 
-LOGIN_REDIRECT_URL = 'grouping-home'
+LOGIN_REDIRECT_URL = 'gproject-home'
 
 LOGIN_URL = 'users-login'
 

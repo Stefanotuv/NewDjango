@@ -15,20 +15,7 @@
   <div class="right_col" role="main">
     <div class="">
       <div class="page-title">
-        <div class="title_left">
-          <h3>Users <small>Some examples to get you started</small></h3>
-        </div>
 
-        <div class="title_right">
-          <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Go!</button>
-              </span>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="clearfix"></div>
@@ -37,7 +24,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Default Example <small>Users</small></h2>
+              <h2>Elaborations Summary </h2>
               <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -56,26 +43,17 @@
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
-              <p class="text-muted font-13 m-b-30">
-                DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>
-              </p>
-              <table id="dy-table" class="table table-striped table-bordered" data-url="{% url 'grouping-api-table-posts' %}">
-                <thead>
-                  <tr>
-                    <th id="pk">pk</th>
-                    <th id="name">name</th>
-                    <th id="description">description</th>
-                    <th id="username">username</th>
-                    <th id="document_input">document_input</th>
-                    <th id="elaborated">elaborated</th>
-                    <th id="date_elaboration">date_elaboration</th>
 
-                  </tr>
+              <table id="dy-table" class="table table-striped table-bordered">
+                <thead id="dy-table-thead">
+
+                {#  columns are added with ajax  #}
+
                 </thead>
 
 
                 <tbody>
-
+                {#  rows are added with ajax  #}
                 </tbody>
               </table>
             </div>
@@ -110,46 +88,136 @@
 {% endblock javascripts %}
 {% block jq%}
      <script type="text/javascript" language="javascript" class="init">
-        var returned_data;
-        returned_data = $.ajax({
-            method: 'GET',
-            url:'/api/elaborations/all_',
-            success: function (data) {
-                console.log("success");
-                console.log(data);
+        var valuex
+        var columns_
+        valuex = $.ajax({
+                        method: 'GET',
+                        url:'/api/elaborations/all_',
+                        success: function (data) {
+                            console.log("success");
+                            console.log(data);
+                            columns_ = []
+                            $.each(data.fields, function(key,value) {
+                                columns_.push({"data":value ,"name": value,"title": value })
+                            });
+                            console.log(columns_);
+                            return columns_
+                        },
+                        error: function(error_data){
+                            console.log("error_data");
+                        }
+                        }
+                    )
+        console.log(valuex)
+        $(document).ready(
+            function () {
+                {#$('#dy-table').ready(function () {#}
+                {#    $.ajax({#}
+                {#            method: 'GET',#}
+                {#            url:'/api/elaborations/all_',#}
+                {#            dataType: "json",#}
+                {#            success: function (data) {#}
+                {#                console.log("success");#}
+                {#                console.log(data);#}
+                {#                str = "<tr role=\"row\">"#}
+                {#                $.each(data.fields, function(key,value) {#}
+                {#                    str = str +#}
+                {#                        '<th id="' +#}
+                {#                        value +#}
+                {#                        '" class="sorting_asc" tabindex="0" aria-controls="dy-table" rowspan="1" colspan="1" aria-label=" aria-label="' +#}
+                {#                        value +#}
+                {#                        ': activate to sort column descending" aria-sort="ascending" style="width: 33px;>' +#}
+                {#                        value +#}
+                {#                        '</th>'#}
+                                    {#<th id="pk"  rowspan="1" colspan="1" ">pk</th>#}
+                {#                    #}
+                {#                });#}
+                {#                str = str + "</tr>"#}
+                                {#$('#dy-table-thead').replaceWith(str);#}
+                {#                console.log("str:");#}
+                {#                console.log(str);#}
+                {#            },#}
+                {#            error: function(error_data){#}
+                {#                console.log("error_data");#}
+                {#            }#}
+                {#            }#}
+                {#        );#}
+                {# }); #}
 
-            },
-            error: function(error_data){
-                console.log("error_data");
-            }
-            }
-        );
-        console.log("returned_data");
-        console.log(returned_data);
 
-        $(document).ready( function () {
                 $('#dy-table').dataTable({
                     {#serverSide: true,#}
                      ajax: {
-                            url: '/api/elaborations/all',
-                            dataSrc: '',
-                            {#columns: ['pk','name','description','user','document_input','elaborated','date_elaboration']#}
-                            {#columns: returned_data.responseJSON['fields']#}
-
+                            "url": '/api/elaborations/all',
+                            "dataSrc": '',
                         },
-                         columns: [
-                            { data: 'pk' },
-                            { data: 'name' },
-                            { data: 'description' },
-                            { data: 'user' },
-                            { data: 'document_input' },
-                            { data: 'elaborated' },
-                            { data: 'date_elaboration' },
+                     columns:
+                         [
+                            { "data": 'pk', "name":'pk', "title":'pk' },
+                            { "data": 'name', "name":'name', "title":'name' },
+                            { "data": 'description', "name":'description', "title":'description' },
+                            { "data": 'user', "name":'user', "title":'user',
+                                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                                    $(nTd).html("<a href='"+oData.user+"'>"+oData.user+"</a>");
+                                }
+                            },
+                            { "data": 'document_input', "name":'document_input', "title":'document_input' },
+                            { "data": 'elaborated', "name":'elaborated', "title":'elaborated' },
+                            { "data": 'date_elaboration', "name":'date_elaboration', "title":'date_elaboration' },
 
                         ]
+                        {#    $.ajax({#}
+                        {#    method: 'GET',#}
+                        {#    url:'/api/elaborations/all_',#}
+                        {#    success: function (data) {#}
+                        {#        console.log("success");#}
+                        {#        console.log(data);#}
+                        {#        columns_ = []#}
+                        {#        $.each(data.fields, function(key,value) {#}
+                        {#            columns_.push({"data":value ,"name": value,"title": value })#}
+                        {#        });#}
+                        {#        console.log(columns_);#}
+                        {#    },#}
+                        {#    error: function(error_data){#}
+                        {#        console.log("error_data");#}
+                        {#    }#}
+                        {#    }#}
+                        {#)#}
+                        {#columns_#}
+                        {#"drawCallback": function() {#}
+                        {##}
+                        {#    result_ = $.ajax({#}
+                        {#                method: 'GET',#}
+                        {#                url:'/api/elaborations/all_',#}
+                        {#                success: function (data) {#}
+                        {#                    console.log("success");#}
+                        {#                    console.log(data);#}
+                        {#                    columns_ = []#}
+                        {#                    $.each(data.fields, function(key,value) {#}
+                        {#                        columns_.push({"data":value ,"name": value,"title": value })#}
+                        {#                    });#}
+                        {#                    console.log(columns_);#}
+                        {#                },#}
+                        {#                error: function(error_data){#}
+                        {#                    console.log("error_data");#}
+                        {#                }#}
+                        {#                }#}
+                        {#            );#}
+                        {##}
+                        {#    $('#example tr:eq(0) th:eq(0)').text("34 update by code");#}
+
+
+
+
+                        ,
 
                 });
-        } )
+
+        }
+            
+
+        
+        )
 
 
         </script>

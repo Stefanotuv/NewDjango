@@ -1,24 +1,58 @@
-{% extends "blog/base.html" %}
+{% extends "gproject/base_site.html" %}
 {% load crispy_forms_tags %}
-{% block bodyblock %}
-    <div class="content-section">
-        <form method="POST">
+{% block title %} Login {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+  <!-- Animate.css -->
+  <link href="/static/vendors/animate.css/animate.min.css" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block body_class %}login{% endblock body_class %}
+
+{% block body %}
+    <div>
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+
+    <div class="login_wrapper">
+      <div class="animate form login_form">
+        <section class="login_content">
+        <h1>Register to The Groping Project</h1>
+              <form  method="POST">
             {% csrf_token %}
+
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Join Today</legend>
-{#                {{ form.as_p }}#}
-                {{ form|crispy }}
+
+                    {{ form|crispy }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Sign Up</button>
-
+                <button class="btn btn-default submit" type="submit">Register</button>
+              <a class="reset_pass" href="#">Lost your password?</a>
             </div>
-        </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                Already have an account? <a class="ml-2" href="{% url 'users-login' %}">Sign In</a>
-            </small>
+          </form>
+            <div class="clearfix"></div>
 
-        </div>
+            <div class="separator">
+              <p class="change_link">Already have an account?
+                <a href="{% url 'users-login' %}" class="to_register"> Log In </a>
+              </p>
+
+              <div class="clearfix"></div>
+              <br />
+
+              <div>
+                <h1><i class="fa fa-users" aria-hidden="true"></i> the grouping project </h1>
+                <p>Privacy and Terms apply</p>
+              </div>
+            </div>
+
+        </section>
+      </div>
+
+
     </div>
-{% endblock bodyblock %}
+  </div>
+
+
+{% endblock body %}

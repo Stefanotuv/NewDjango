@@ -1,14 +1,50 @@
-{% extends "blog/base.html" %}
+{% extends "gproject/base_site.html" %}
 {% load crispy_forms_tags %}
-{% block bodyblock %}
-        <h2>
-            Thanks for visiting today, come back soon!
-        </h2>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                <a class="ml-2" href="{% url 'users-login' %}">Log In Again</a>
-            </small>
+{% block title %} Logout {% endblock title %}
 
-        </div>
+{% block stylesheets %}
+  {{ block.super }}
+  <!-- Animate.css -->
+  <link href="/static/vendors/animate.css/animate.min.css" rel="stylesheet">
+{% endblock stylesheets %}
 
-{% endblock bodyblock %}
+{% block body_class %}Logout{% endblock body_class %}
+
+{% block body %}
+  <div>
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+    <a class="hiddenanchor" id="logout"></a>
+
+    <div class="login_wrapper">
+      <div class="animate form login_form">
+          <section class="login_content">
+            <fieldset class="form-group">
+                <h2>
+                    Thanks for visiting today, come back soon!
+                </h2>
+            </fieldset>
+            <div class="clearfix"></div>
+
+            <div class="separator">
+              <p class="change_link">
+                <a href="{% url 'users-login' %}" class="to_register"> Sign back in again </a>
+              </p>
+
+              <div class="clearfix"></div>
+              <br />
+
+              <div>
+                <h1><i class="fa fa-users" aria-hidden="true"></i> the grouping project </h1>
+                <p>Privacy and Terms apply</p>
+              </div>
+            </div>
+
+          </section>
+
+      </div>
+
+
+    </div>
+  </div>
+{% endblock body %}

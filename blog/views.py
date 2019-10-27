@@ -68,8 +68,12 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     context_object_name = 'post'
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        # form.instance.author = self.request.user
+        instance = form.save(commit=False)
+        instance.user = self.request.user
+        instance.save()
         return super().form_valid(form)
+
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
