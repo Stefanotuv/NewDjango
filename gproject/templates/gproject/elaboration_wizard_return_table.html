@@ -1,0 +1,308 @@
+{% extends "gproject/base_site.html" %}
+{% load crispy_forms_tags %}
+{% block title %} Elaborations Summary {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+  <link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block content %}
+  <div class="right_col" role="main">
+    <div class="">
+      <div class="page-title">
+
+      </div>
+      <div class="clearfix"></div>
+
+      <div class="row">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Elaboration Wizards</h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Settings 1</a>
+                    </li>
+                    <li><a href="#">Settings 2</a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+            <form class="form-horizontal form-label-left " method="post">
+              <!-- Smart Wizard -->
+              <div id="wizard" class="form_wizard wizard_horizontal">
+
+                <ul class="wizard_steps">
+                  <li>
+                    <a href="#step-1">
+                      <span class="step_no">1</span>
+                      <span class="step_descr">
+                                        Step 1<br />
+                                        <small>Set up initial data</small>
+                                    </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#step-2">
+                      <span class="step_no">2</span>
+                      <span class="step_descr">
+                                        Step 2<br />
+                                        <small>Upload the data</small>
+                                    </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#step-3">
+                      <span class="step_no">3</span>
+                      <span class="step_descr">
+                                        Step 3<br />
+                                        <small>Data cleansing</small>
+                                    </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#step-4">
+                      <span class="step_no">4</span>
+                      <span class="step_descr">
+                                        Step 4<br />
+                                        <small>Run Elaboration</small>
+                                    </span>
+                    </a>
+                  </li>
+                </ul>
+
+                    <div id="step-1" style="margin: auto;">
+
+                        <table id="dy-table" class="table table-striped table-bordered">
+                        <thead>
+                          <tr>
+                            <th id="LBSNo">LBSNo</th>
+                            <th id="Stream">Stream</th>
+                            <th id="Group">Group</th>
+                            <th id="First Name">First Name</th>
+                            <th id="Known Name">Known Name</th>
+                            <th id="Surname">Surname</th>
+                            <th id="Nationality">Nationality</th>
+                            <th id="Nationality Region">Nationality Region</th>
+                            <th id="Gender">Gender</th>
+                            <th id="Age">Age</th>
+                            <th id="Relevant Experience">Relevant Experience</th>
+                            <th id="Country of Residence">Country of Residence</th>
+                            <th id="CoR Region">CoR Region</th>
+                            <th id="GMAT Score(total)">GMAT Score(total)</th>
+                            <th id="Quant">Quant</th>
+                            <th id="English Mother Tongue">English Mother Tongue</th>
+                            <th id="English Scores">English Scores</th>
+                            <th id="Job Title">Job Title</th>
+                            <th id="Company Name">Company Name</th>
+                            <th id="City (Employment)">City (Employment)</th>
+                            <th id="Country(Employment)">Country(Employment)</th>
+                            <th id="Professional Category (PO team)">Professional Category (PO team)</th>
+                            <th id="Job Function">Job Function</th>
+                            <th id="Email Address">Email Address</th>
+                            <th id="School Email">School Email</th>
+                            <th id="Q Score">Q Score</th>
+                            <th id="Q Score %">Q Score %</th>
+                            <th id="V Score">V Score</th>
+                            <th id="V Score %">V Score %</th>
+                            <th id="AW Score">AW Score</th>
+                            <th id="AW Score  %">AW Score  %</th>
+                            <th id="IR Score">IR Score</th>
+                            <th id="IR Score  %">IR Score  %</th>
+                            <th id="Second Nationality">Second Nationality</th>
+                            <th id="Home City">Home City</th>
+                            <th id="Microeconomics Waiver">Microeconomics Waiver</th>
+                            <th id="Macroeconomics Waiver">Macroeconomics Waiver</th>
+                            <th id="DAM Waiver ">DAM Waiver </th>
+                            <th id="Visa at risk ">Visa at risk </th>
+                          </tr>
+                        </thead>
+
+
+                        <tbody>
+
+                        </tbody>
+                      </table>
+
+                    </div>
+                    <div id="step-2">
+
+                        <div class="form-group">
+
+
+
+                        </div>
+                    </div>
+                    <div id="step-3">
+                      <h2 class="StepTitle">Step 3 Content</h2>
+                      <p>
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                        eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                      </p>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                      </p>
+                    </div>
+                    <div id="step-4">
+                      <h2 class="StepTitle">Step 4 Content</h2>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                      </p>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                      </p>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                      </p>
+                    </div>
+
+
+              </div>
+              <!-- End SmartWizard Content -->
+                <button class="btn btn-outline-info" type="submit">Save Data</button>
+
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super}}
+  <!-- jQuery Smart Wizard -->
+  <script src="/static/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+
+  <!-- Datatables -->
+  <script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="/static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+  <script src="/static/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="/static/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+  <script src="/static/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+  <script src="/static/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+  <script src="/static/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+  <script src="/static/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+  <script src="/static/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+  <script src="/static/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="/static/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+  <script src="/static/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+  <script src="/static/vendors/jszip/dist/jszip.min.js"></script>
+  <script src="/static/vendors/pdfmake/build/pdfmake.min.js"></script>
+  <script src="/static/vendors/pdfmake/build/vfs_fonts.js"></script>
+
+{% endblock javascripts %}
+
+{% block jq%}
+     <script type="text/javascript" language="javascript" class="init">
+        var returned_data;
+        returned_data = $.ajax({
+            method: 'GET',
+            url:'/media/static/documents/MBA2021_Stream-Group_Allocation_-_v1_-_small.json',
+            success: function (data) {
+                console.log("success");
+                console.log(data);
+
+            },
+            error: function(error_data){
+                console.log("error_data");
+            }
+            }
+        );
+
+
+
+        console.log("returned_data");
+        console.log(returned_data);
+
+
+
+        $(document).ready(
+            function () {
+                $('#dy-table').dataTable({
+                    {#serverSide: true,#} 
+                     ajax: {
+                            url:'/media/static/documents/MBA2021_Stream-Group_Allocation_-_v1_-_small_AmrTf3K.json',
+                            dataSrc: '',
+                            {#columns: ['pk','name','description','user','document_input','elaborated','date_elaboration']#}
+                            {#columns: returned_data.responseJSON['fields']#}
+
+                     },
+                     columns: [
+                            { data: 'LBSNo' },
+                            { data: 'Stream' },
+                            { data: 'Group' },
+                            { data: 'First Name' },
+                            { data: 'Known Name' },
+                            { data: 'Surname' },
+                            { data: 'Nationality' },
+                            { data: 'Nationality Region' },
+                            { data: 'Gender' },
+                            { data: 'Age' },
+                            { data: 'Relevant Experience' },
+                            { data: 'Country of Residence' },
+                            { data: 'CoR Region' },
+                            { data: 'GMAT Score(total)' },
+                            { data: 'Quant' },
+                            { data: 'English Mother Tongue' },
+                            { data: 'English Scores' },
+                            { data: 'Job Title' },
+                            { data: 'Company Name' },
+                            { data: 'City (Employment)' },
+                            { data: 'Country(Employment)' },
+                            { data: 'Professional Category (PO team)' },
+                            { data: 'Job Function' },
+                            { data: 'Email Address' },
+                            { data: 'School Email' },
+                            { data: 'Q Score' },
+                            { data: 'Q Score %' },
+                            { data: 'V Score' },
+                            { data: 'V Score %' },
+                            { data: 'AW Score' },
+                            { data: 'AW Score  %' },
+                            { data: 'IR Score' },
+                            { data: 'IR Score  %' },
+                            { data: 'Second Nationality' },
+                            { data: 'Home City' },
+                            { data: 'Microeconomics Waiver' },
+                            { data: 'Macroeconomics Waiver' },
+                            { data: 'DAM Waiver ' },
+                            { data: 'Visa at risk ' },
+
+                            ]
+
+                });
+
+        }
+
+
+
+        )
+
+
+        </script>
+
+
+    {% endblock jq %}
+
+

@@ -14,7 +14,8 @@ class Elaboration(models.Model):
     # user = models.OneToOneField(User, on_delete=models.CASCADE,related_name='user_elaboration', null=True,
     #                             unique=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_elaboration')
-    date_elaboration = models.DateTimeField(default=timezone.now, auto_now_add=False,null=True)
+    # date_elaboration = models.DateTimeField(default=None, auto_now_add=False,null=True)
+    date_elaboration = models.DateTimeField(blank=True, null = True)
     document_input = models.FileField(upload_to='static/documents/',blank=True, null=True)
     elaborated = models.BooleanField(default=False)
 

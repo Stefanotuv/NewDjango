@@ -1,5 +1,10 @@
 - unique email: https://docs.djangoproject.com/en/2.1/topics/auth/customizing/#a-full-example
 - infinite scroll: https://github.com/nitely/django-infinite-scroll-pagination/blob/master/README.md
-- handle ajax and single page
 
-- modify css and other templates
+
+
+- add ajax on post (get already work)
+- why the form doesnt validate - DONE (it was the wrong input in the form)
+
+- add visualisation on table from excel to manipulate
+- understand what to save

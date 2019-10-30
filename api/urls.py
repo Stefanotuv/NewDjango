@@ -8,8 +8,10 @@ from .views import ElaborationListAPIView\
     # , TableColumnsAPIView
 
 urlpatterns = [
-
+    # get data
     path('elaborations/all', ElaborationListAPIView.as_view(),name='elaborations-all'),
     path('elaborations/all_', views.tableColumnsAPIView,name='elaborations-all-'),
+
+    # post data
 
 ]
