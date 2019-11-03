@@ -59,26 +59,16 @@ class GPElaborationCreateView(LoginRequiredMixin,CreateView):
         instance.user = self.request.user
         instance.save()
         self.excel_to_json(instance.document_input)
-
-
-        # # code to manage the file convert to JSON
-        # excel_data_df = pandas.read_excel(instance.document_input)
-        # json_str = excel_data_df.to_json()
-        #
-        # # change the file name in person.json
-        # filejson = 'media/' + os.path.splitext(instance.document_input.name)[0] + '.json'
-        #
-        # with open(filejson, 'w+') as json_file:
-        #     json.dump(json_str, json_file)
-
+        filename =instance.document_input.file.name
         super().form_valid(form)
+        # return redirect('gproject-gp-wizard-table',{"filename":filename})
         return redirect('gproject-gp-wizard-table')
 
     def excel_to_json(self,path_filename):
 
         wb = xlrd.open_workbook(path_filename.file.name)
         sh = wb.sheet_by_index(0)
-        column_list = ['LBSNo',
+        data_column_list = ['LBSNo',
                         'Stream',
                         'Group',
                         'First Name',
@@ -118,25 +108,23 @@ class GPElaborationCreateView(LoginRequiredMixin,CreateView):
                         'DAM Waiver ',
                         'Visa at risk ',]
         data_list = []
-
+        columns = []
         for rownum in range(1, sh.nrows):
             dict = {}
+
+            for rowvalue in range(0, sh.row(rownum).__len__() - 1):
+                columns.append(sh.row(0)[rowvalue].value)
+
             for rowvalue in range(0, sh.row(rownum).__len__()-1):
-                # cell = sh.row(rownum)[rowvalue]
                 dict[sh.row(0)[rowvalue].value] = sh.row(rownum)[rowvalue].value
 
             data_list.append(dict)
-        data_list
 
-        # # change the file name in person.json
-        # filejson = 'media/' + os.path.splitext(path_filename.file.name)[0] + '.json'
+
         filejson = os.path.splitext(path_filename.file.name)[0] + '.json'
-
         with open(filejson, 'w+') as json_file:
             json.dump(data_list, json_file)
 
-                # sh.row(1).__len__()
-                # rowvalue
 
 
 

@@ -1819,7 +1819,7 @@ function init_daterangepicker_reservation() {
 /* SMART WIZARD */
 
 function init_SmartWizard() {
-
+    debugger;
     if (typeof($.fn.smartWizard) === 'undefined') {
         return;
     }

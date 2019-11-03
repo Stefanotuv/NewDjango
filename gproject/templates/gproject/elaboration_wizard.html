@@ -44,7 +44,7 @@
             </div>
             <div class="x_content">
 
-            <form class="form-horizontal form-label-left " method="post" enctype="multipart/form-data">
+
               <!-- Smart Wizard -->
               <div id="wizard" class="form_wizard wizard_horizontal">
 
@@ -86,32 +86,37 @@
                     </a>
                   </li>
                 </ul>
-
-                    <div id="step-1" style="margin: auto;">
-                        <div class="jumbotron">
+{#                    <div class="stepContainer" >#}
+                    <div id="step-1" class="content" style="display: block;">
+                        <form id="post-form" class="form-horizontal form-label-left " method="post" enctype="multipart/form-data" Content-Type = "application/json; charset=utf-8",>
+                            <div class="jumbotron">
                           {% csrf_token %}
                           <div class="form-group" style="margin: auto;">
-                              {{ form.as_table }}
 
-{#                            <div class="col-md-10 col-sm-10 col-xs-12" style="margin: auto;">#}
-{#                                  {{ form.name|as_crispy_field }}#}
-{#                            </div>#}
-{##}
-{#                          </div>#}
-{##}
-{#                          <div class="form-group" style="margin: auto;">#}
-{#                            <div class="col-md-10 col-sm-10 col-xs-12" style="margin: auto;">#}
-{#                                  {{ form.description|as_crispy_field }}#}
-{#                            </div>#}
-{#                          </div>#}
-{##}
-{#                          <div class="form-group" style="margin: auto;">#}
-{#                            <div class="col-md-10 col-sm-10 col-xs-12" style="margin: auto;">#}
-{#                                  {{ form.document_input|as_crispy_field }}#}
-{#                            </div>#}
+                            <div class="col-md-6 col-sm-6 col-xs-12" >
+                                  {{ form.name|as_crispy_field }}
+                            </div>
+
                           </div>
+
+                          <div class="form-group" style="margin: auto;">
+                            <div class="col-md-6 col-sm-6 col-xs-12" >
+                                  {{ form.description|as_crispy_field }}
+                            </div>
+                          </div>
+
+                          <div class="form-group" style="margin: auto;">
+                            <div class="col-md-6 col-sm-6 col-xs-12"  >
+                                  {{ form.document_input|as_crispy_field }}
+                            </div>
+                          </div>
+{#                            <button class="btn btn-outline-info" type="submit">Save Data</button>#}
+                             <div id="btn_submit" class="btn btn-outline-info" >Save Data</div>
                         </div>
+
+                        </form>
                     </div>
+
                     <div id="step-2">
 
                         <div class="form-group">
@@ -145,13 +150,12 @@
                         in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                       </p>
                     </div>
-
+{#                </div>#}
 
               </div>
               <!-- End SmartWizard Content -->
-                <button class="btn btn-outline-info" type="submit">Save Data</button>
 
-            </form>
+
             </div>
           </div>
         </div>
@@ -165,3 +169,43 @@
   <!-- jQuery Smart Wizard -->
   <script src="/static/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
 {% endblock javascripts %}
+{% block jq%}
+<script type="text/javascript" language="javascript" class="init">
+
+    $("#btn_submit").click( function() {
+        {#debugger;#}
+        $.ajax({
+            type:'POST',
+            url:'/api/elaborations/add',
+            enctype: 'multipart/form-data',
+            dataType:'json',
+            processData: false,
+            contentType: false,
+            crossDomain: true,
+            contentDisposition:$('input[type="file"]').context.forms[0]['document_input'].name,
+            {#contentType: "application/json; charset=utf-8",#}
+            {#Accept : 'application/json',#}
+            headers: {
+                'Accept': 'application/json',
+                {#'Content-Type': 'application/json',#}
+                {#'Content-Disposition': "attachment; filename = 'filename'",#}
+             },
+            data:{
+                "user": {{ user.pk }},
+                "name":$("#id_name").val(),
+                "description":$("#id_description").val(),
+                {#"document_input":$("#id_document_input").val(),#}
+                "document_input":$("#id_document_input"),
+                "csrfmiddlewaretoken":$("input[name=csrfmiddlewaretoken]").val(),
+                "action": 'post',
+                "filename": 'filename'
+            },
+            success: function() {console.log("success"); console.log("data") },
+            error : function(xhr,errmsg,err) {
+                console.log("error message")
+            console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+        }
+        });
+    });
+</script>
+{% endblock jq %}

@@ -11,10 +11,8 @@ from django.conf import settings
 class Elaboration(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
-    # user = models.OneToOneField(User, on_delete=models.CASCADE,related_name='user_elaboration', null=True,
-    #                             unique=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_elaboration')
-    # date_elaboration = models.DateTimeField(default=None, auto_now_add=False,null=True)
+    date_created = models.DateTimeField(auto_now_add=True,null=True)
     date_elaboration = models.DateTimeField(blank=True, null = True)
     document_input = models.FileField(upload_to='static/documents/',blank=True, null=True)
     elaborated = models.BooleanField(default=False)
@@ -26,6 +24,9 @@ class Elaboration(models.Model):
     def get_absolute_url(self):
         # return reverse('gproject-gp-wizard', kwargs={'id':self.id})
         return reverse('gproject-gp-wizard')
+
+    def __unicode__(self):
+        return self.name
 
 
 

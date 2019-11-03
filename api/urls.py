@@ -4,7 +4,7 @@ from django.conf.urls import url
 from django.urls import path
 from api import views
 
-from .views import ElaborationListAPIView\
+from .views import ElaborationListAPIView, ElaborationCreateAPIView
     # , TableColumnsAPIView
 
 urlpatterns = [
@@ -13,5 +13,6 @@ urlpatterns = [
     path('elaborations/all_', views.tableColumnsAPIView,name='elaborations-all-'),
 
     # post data
+    path('elaborations/add', ElaborationCreateAPIView.as_view(),name='elaborations-add'),
 
 ]

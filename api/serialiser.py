@@ -8,3 +8,4 @@ class ElaborationSerialiser(serializers.ModelSerializer):
     class Meta:
         model = Elaboration
         fields = ('pk','name','description','user','document_input','elaborated','date_elaboration')
+        # fields = "__all__"
