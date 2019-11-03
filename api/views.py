@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .serialiser import ElaborationSerialiser
 from gproject.models import Elaboration
 from rest_framework import generics
+from rest_framework import permissions
 import pandas, json
 import os
 import xlrd
@@ -34,7 +35,7 @@ class ElaborationCreateAPIView(generics.CreateAPIView):
     queryset = Elaboration.objects.all()
     serializer_class = ElaborationSerialiser
     columns = serializer_class.Meta.fields
-    permission_classes = ()
+    # permission_classes = [permissions.IsAuthenticated]
     # parser_classes = (MultiPartParser, FormParser, FileUploadParser)
     # parser_classes = (FileUploadParser, MultiPartParser,  )
     # parser_classes = (MultiPartParser, FileUploadParser, )
