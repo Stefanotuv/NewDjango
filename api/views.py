@@ -2,16 +2,17 @@ from django.shortcuts import render, redirect
 from .serialiser import ElaborationSerialiser
 from gproject.models import Elaboration
 from rest_framework import generics
-from rest_framework import permissions
+from gproject.forms import ElaborationCreateForm
 import pandas, json
 import os
 import xlrd
 from django.views import View
 import sys
 from django.http import JsonResponse
-from rest_framework.parsers import MultiPartParser, FormParser, FileUploadParser
+from rest_framework.parsers import MultiPartParser, FormParser, FileUploadParser, JSONParser
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 # Create your views here.
 
 class ElaborationListAPIView(generics.ListAPIView):
@@ -29,21 +30,25 @@ def tableColumnsAPIView(request):
     return  JsonResponse(context)
 # ,generics.base.CreateModelMixin):
 
-@method_decorator(login_required, name='dispatch')
+# @method_decorator(login_required, name='dispatch')
+# class ElaborationCreateAPIView(LoginRequiredMixin,generics.CreateAPIView):
 class ElaborationCreateAPIView(generics.CreateAPIView):
     lookup_field = 'pk'
+    form_class = ElaborationCreateForm
     queryset = Elaboration.objects.all()
     serializer_class = ElaborationSerialiser
     columns = serializer_class.Meta.fields
-    # permission_classes = [permissions.IsAuthenticated]
-    # parser_classes = (MultiPartParser, FormParser, FileUploadParser)
-    # parser_classes = (FileUploadParser, MultiPartParser,  )
-    # parser_classes = (MultiPartParser, FileUploadParser, )
-    parser_classes = ( FormParser,MultiPartParser,)
+    permission_classes = ()
+
+    parser_classes = (MultiPartParser, JSONParser, FileUploadParser, FormParser)
 
 
-    def post(self, request, *args, **kwargs):
-        super().post(request, *args, **kwargs)
+
+
+    # def post(self, request, *args, **kwargs):
+    #     if self.request.method == "POST" and self.request.is_ajax():
+    #         super().post(request, *args, **kwargs)
+    #     super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
         instance = form.save(commit=False)

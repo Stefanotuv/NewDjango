@@ -13,6 +13,8 @@ urlpatterns = [
          name='gproject-gp-new'),
     path('GP/wizard',GPElaborationCreateView.as_view(template_name = 'gproject/elaboration_wizard.html'),
          name='gproject-gp-wizard'),
+    path('GP/wizard_2',GPElaborationCreateView.as_view(template_name = 'gproject/elaboration_wizard_2.html'),
+         name='gproject-gp-wizard-2'),
     path('GP/wizard-table',GPElaborationCreateView.as_view(template_name = 'gproject/elaboration_wizard_return_table.html'),
          name='gproject-gp-wizard-table')
 

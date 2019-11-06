@@ -161,19 +161,36 @@ $( document ).ready(function() {
     console.log( "ready!" );
     $("#btn_submit").click( function() {
 
-        var fileSelect = document.getElementById('id_document_input').files[0];
-        var filename = fileSelect.name;
 
+        $("#post-form");
+        console.log( '$("#post-form"):' );
+        console.log( $("#post-form") );
+
+        var fileSelect = document.getElementById('id_document_input').files[0];
         console.log( 'fileSelect:' );
         console.log( fileSelect );
 
+        var form = $('#post-form')[0]; // You need to use standard javascript object here
         var formData = new FormData();
         formData.append('user', {{ user.pk }});
         formData.append('name', $("#id_name").val(),);
         formData.append('description',  $("#id_description").val());
-        formData.append('document_input', fileSelect, filename);
+        formData.append('document_input', fileSelect, 'document_input');
         formData.append('csrfmiddlewaretoken', $("input[name=csrfmiddlewaretoken]").val());
+        debugger;
+        console.log( 'formData:' );
+        console.log( formData );
 
+        requestData = {
+            'user': {{ user.pk }},
+            'name':$("#id_name").val(),
+            'description': $("#id_description").val(),
+            'document_input': fileSelect,
+            'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val(),
+            'action': 'post',
+        };
+        console.log( 'requestData' );
+        console.log( requestData );
         $.ajax({
             type:'POST',
             url:'/api/elaborations/add',
@@ -181,9 +198,15 @@ $( document ).ready(function() {
             dataType:'json',
             processData: false,
             contentType: false,
+            {#contentType: 'application/json',#}
             crossDomain: true,
+            {#data: JSON.stringify(requestData),#}
+            {#data: requestData,#}
+            {#file:fileSelect,#}
             data: formData,
-            success: function(data) {console.log("success"); console.log("data"),console.log(data) },
+            {#data: new FormData(requestData),#}
+            success: function() {console.log("success"); console.log("data") },
+
             error : function(xhr,errmsg,err) {
                 console.log("error message")
                 console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
@@ -192,5 +215,58 @@ $( document ).ready(function() {
     });
 });
 
+    {##}
+    {#$("#btn_submit").click( function() {#}
+    {##}
+    {#    var formData = new FormData();#}
+    {#    var fileSelect = document.getElementById('id_document_input').files[0];#}
+        {#var fileSelect = document.getElementById('id_document_input').files;#}
+    {#    var filename = $("#id_document_input").val()#}
+        {#var test = new FormData(self)#}
+    {##}
+        {#requestData = {data:[#}
+        {#    {'user': {{ user.pk }}},#}
+        {#    {'name':$("#id_name").val()},#}
+        {#    {'description': $("#id_description").val()},#}
+        {#    {'document_input': fileSelect},#}
+        {#    {'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()},#}
+        {#    {'action': 'post'},#}
+        {#]};#}
+    {##}
+    {#    requestDataNew = {#}
+    {#        'user': {{ user.pk }},#}
+    {#        'name':$("#id_name").val(),#}
+    {#        'description': $("#id_description").val(),#}
+    {#        'document_input': [fileSelect],#}
+    {#        'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val(),#}
+    {#        'action': 'post'#}
+    {#        };#}
+    {##}
+    {##}
+    {##}
+    {#    debugger;#}
+    {##}
+    {#    $.ajax({#}
+    {#        type:'POST',#}
+    {#        url:'/api/elaborations/add',#}
+    {#        enctype: 'multipart/form-data',#}
+    {#        dataType:'json',#}
+    {#        processData: false,#}
+    {#        contentType: 'application/json',#}
+    {#        crossDomain: true,#}
+    {##}
+    {#        headers: {#}
+    {#            'Accept': 'application/json',#}
+    {#         },#}
+            {#data: JSON.stringify(requestDataNew),#}
+            {#data: requestDataNew,#}
+    {#        data: $(this),#}
+    {#        success: function() {console.log("success"); console.log("data") },#}
+    {#        error : function(xhr,errmsg,err) {#}
+    {#            console.log("error message")#}
+    {#        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console#}
+    {#    }#}
+    {#    });#}
+    {# });#}
 </script>
 {% endblock jq %}

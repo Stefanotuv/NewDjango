@@ -88,34 +88,34 @@
                 </ul>
 {#                    <div class="stepContainer" >#}
                     <div id="step-1" class="content" style="display: block;">
-                        <form type="submit" id="post-form" class="form-horizontal form-label-left " method="post" enctype="multipart/form-data" >
+                        <form id="post-form" class="form-horizontal form-label-left " method="post" enctype="multipart/form-data" Content-Type = "application/json; charset=utf-8",>
                             <div class="jumbotron">
                           {% csrf_token %}
                           <div class="form-group" style="margin: auto;">
 
                             <div class="col-md-6 col-sm-6 col-xs-12" >
-                                <div  class="textinput textInput form-control">
-                                  {{ form.name }}
-                                </div>
+                                  {{ form.name|as_crispy_field }}
                             </div>
 
                           </div>
 
                           <div class="form-group" style="margin: auto;">
                             <div class="col-md-6 col-sm-6 col-xs-12" >
-                                  {{ form.description }}
+                                  {{ form.description|as_crispy_field }}
                             </div>
                           </div>
 
                           <div class="form-group" style="margin: auto;">
                             <div class="col-md-6 col-sm-6 col-xs-12"  >
-                                  {{ form.document_input }}
+{#                                  {{ form.document_input|as_crispy_field }}#}
                             </div>
                           </div>
 {#                            <button class="btn btn-outline-info" type="submit">Save Data</button>#}
-                             <div id="btn_submit" class="btn btn-outline-info">Save Data</div>
+{#                             <div id="btn_submit" class="btn btn-outline-info" >Save Data</div>#}
+                                <input type="submit" value="Submit feedback" class="btn btn-primary">
                         </div>
 
+{#                                {{ form.user.as_hidden }}#}
                         </form>
                     </div>
 
@@ -157,40 +157,31 @@
 {% block jq%}
 <script type="text/javascript" language="javascript" class="init">
 
-$( document ).ready(function() {
-    console.log( "ready!" );
-    $("#btn_submit").click( function() {
+$(document).ready(function() {
+    $("#post-form").submit(function(event) {
+        data = $(this)
 
-        var fileSelect = document.getElementById('id_document_input').files[0];
-        var filename = fileSelect.name;
+        debugger;
+       event.preventDefault();
+       $.ajax({
+                'user': {{ user.pk }},
+                'data': [$(this).serialize(), {{ user.pk }}],
+                'type': $(this).attr('method'),
+                'url': '/api/elaborations/add',
+                {#'beforeSend': function(xhr, settings) {#}
+                {#  console.log("Before Send");#}
+                {#        $.ajaxSettings.beforeSend(xhr, settings);#}
+                {#    },#}
+                'success': function(response) {
+                    console.log('success');
+                    console.log(response);
 
-        console.log( 'fileSelect:' );
-        console.log( fileSelect );
-
-        var formData = new FormData();
-        formData.append('user', {{ user.pk }});
-        formData.append('name', $("#id_name").val(),);
-        formData.append('description',  $("#id_description").val());
-        formData.append('document_input', fileSelect, filename);
-        formData.append('csrfmiddlewaretoken', $("input[name=csrfmiddlewaretoken]").val());
-
-        $.ajax({
-            type:'POST',
-            url:'/api/elaborations/add',
-            enctype: 'multipart/form-data',
-            dataType:'json',
-            processData: false,
-            contentType: false,
-            crossDomain: true,
-            data: formData,
-            success: function(data) {console.log("success"); console.log("data"),console.log(data) },
-            error : function(xhr,errmsg,err) {
-                console.log("error message")
-                console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-            }
-        });
-    });
-});
-
+                },
+                'error': function (request, status, error) {
+                     console.log(request.responseText);
+                }
+       });
+   });
+})
 </script>
 {% endblock jq %}
