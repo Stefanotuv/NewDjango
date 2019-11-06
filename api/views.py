@@ -30,9 +30,9 @@ def tableColumnsAPIView(request):
     return  JsonResponse(context)
 # ,generics.base.CreateModelMixin):
 
-# @method_decorator(login_required, name='dispatch')
-# class ElaborationCreateAPIView(LoginRequiredMixin,generics.CreateAPIView):
-class ElaborationCreateAPIView(generics.CreateAPIView):
+@method_decorator(login_required, name='dispatch')
+class ElaborationCreateAPIView(LoginRequiredMixin,generics.CreateAPIView):
+# class ElaborationCreateAPIView(generics.CreateAPIView):
     lookup_field = 'pk'
     form_class = ElaborationCreateForm
     queryset = Elaboration.objects.all()
@@ -45,10 +45,10 @@ class ElaborationCreateAPIView(generics.CreateAPIView):
 
 
 
-    # def post(self, request, *args, **kwargs):
-    #     if self.request.method == "POST" and self.request.is_ajax():
-    #         super().post(request, *args, **kwargs)
-    #     super().post(request, *args, **kwargs)
+    def post(self, request, *args, **kwargs):
+        if self.request.method == "POST" and self.request.is_ajax():
+            super().post(request, *args, **kwargs)
+        super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
         instance = form.save(commit=False)
