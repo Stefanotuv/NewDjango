@@ -5,8 +5,6 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.http import HttpResponse, HttpResponseRedirect
-from django.core.files.storage import FileSystemStorage
 import pandas, json
 import os
 import xlrd

@@ -1,0 +1,87 @@
+
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+  background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 0px;
+  width: 0px;
+  margin: 0 80px;
+  background-color: #ffffff;
+  border: #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+/* Mark the active step: */
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #4CAF50;
+}
+
+#titles{
+  padding: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.plusMinus {
+  height: 20px;
+  width: 20px;
+  margin: 0 10px;
+  background-color: #440044;
+  border: #440044;
+  border-radius: 100%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+#plus_minus_div_group{
+  height: 25px
+}
+
+.size_16 {
+  font-size: 16px
+}
+.size_15 {
+  font-size: 15px
+}
+.size_14 {
+  font-size: 14px
+}
+.size_13 {
+  font-size: 13px
+}
+
+.size_12 {
+  font-size: 12px
+}
+
+.size_11 {
+  font-size: 11px
+}
+
+.size_10 {
+  font-size: 10px
+}
+
+.size_9 {
+  font-size: 9px
+}
+
+.size_8 {
+  font-size: 8px
+}

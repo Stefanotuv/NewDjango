@@ -150,7 +150,9 @@ var randNum = function() {
 
 // Panel toolbox
 $(document).ready(function() {
+    "use strict"
     $('.collapse-link').on('click', function() {
+        debugger;
         var $BOX_PANEL = $(this).closest('.x_panel'),
             $ICON = $(this).find('i'),
             $BOX_CONTENT = $BOX_PANEL.find('.x_content');

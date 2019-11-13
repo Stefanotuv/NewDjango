@@ -1,18 +1,20 @@
-from django.shortcuts import render, redirect
 from .serialiser import ElaborationSerialiser
 from gproject.models import Elaboration
 from rest_framework import generics
 from gproject.forms import ElaborationCreateForm
+from NewDjango.settings import GROUPING_COLUMNS
 import pandas, json
 import os
 import xlrd
-from django.views import View
 import sys
 from django.http import JsonResponse
 from rest_framework.parsers import MultiPartParser, FormParser, FileUploadParser, JSONParser
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.files.storage import FileSystemStorage
+
+from NewDjango.settings import MEDIA_ROOT, MEDIA_URL
 # Create your views here.
 
 class ElaborationListAPIView(generics.ListAPIView):
@@ -32,46 +34,65 @@ def tableColumnsAPIView(request):
 
 @method_decorator(login_required, name='dispatch')
 class ElaborationCreateAPIView(LoginRequiredMixin,generics.CreateAPIView):
-# class ElaborationCreateAPIView(generics.CreateAPIView):
     lookup_field = 'pk'
     form_class = ElaborationCreateForm
     queryset = Elaboration.objects.all()
     serializer_class = ElaborationSerialiser
     columns = serializer_class.Meta.fields
     permission_classes = ()
+    temp_file_name = ''
 
     parser_classes = (MultiPartParser, JSONParser, FileUploadParser, FormParser)
 
 
-
-
     def post(self, request, *args, **kwargs):
-        if self.request.method == "POST" and self.request.is_ajax():
-            super().post(request, *args, **kwargs)
-        super().post(request, *args, **kwargs)
+        # intercept the post in order to operate on the saved file
+        # after posting the request
+        obj = self.create(request, *args, **kwargs)
 
-    def form_valid(self, form):
-        instance = form.save(commit=False)
-        instance.user = self.request.user
-        instance.save()
-        self.excel_to_json(instance.document_input)
-        super().form_valid(form)
+        self.excel_to_json(self.temp_file_name)
+
+        return obj
+
+    def perform_create(self, serializer):
+
+
+        serializer.save()
+        temp_full_path_file_name = serializer.data['document_input']
+        self.temp_file_name = os.path.basename(temp_full_path_file_name)
+
 
     def excel_to_json(self, path_filename):
-        wb = xlrd.open_workbook(path_filename.file.name)
-        sh = wb.sheet_by_index(0)
-        data_list = []
-        columns = []
-        for rownum in range(1, sh.nrows):
+        full_path_filename = os.path.join(os.path.join(os.path.join(MEDIA_ROOT,'static'),'documents'),path_filename)
+
+        try:
+            wb = xlrd.open_workbook(full_path_filename)
+            sh = wb.sheet_by_index(0)
+            data_list = []
+            columns = []
+
             dict = {}
-            for rowvalue in range(0, sh.row(rownum).__len__() - 1):
+            for rowvalue in range(0, sh.row(0).__len__()):
                 columns.append(sh.row(0)[rowvalue].value)
-            for rowvalue in range(0, sh.row(rownum).__len__() - 1):
-                dict[sh.row(0)[rowvalue].value] = sh.row(rownum)[rowvalue].value
-            data_list.append(dict)
-        filejson = os.path.splitext(path_filename.file.name)[0] + '.json'
-        with open(filejson, 'w+') as json_file:
-            json.dump(data_list, json_file)
+            if (columns != GROUPING_COLUMNS):
+                raise()
+            for rownum in range(1, sh.nrows):
+                for rowvalue in range(0, sh.row(rownum).__len__()):
+                    dict[sh.row(0)[rowvalue].value] = sh.row(rownum)[rowvalue].value
+                data_list.append(dict)
+
+                # verify if the columns are same as the expected columns for the grouping
+
+            filejson = os.path.splitext(full_path_filename)[0] + '.json'
+
+            with open(filejson, 'w+') as json_file:
+                json.dump(data_list, json_file)
+
+        except:
+            print("Error: File Format issues")
+
+
+
 
 
 
