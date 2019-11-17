@@ -45,7 +45,7 @@ input.invalid {
   background-color: #440044;
   border: #440044;
   border-radius: 100%;
-  display: inline-block;
+    display: inline-block;
   opacity: 0.5;
 }
 
@@ -84,4 +84,25 @@ input.invalid {
 
 .size_8 {
   font-size: 8px
+}
+
+.form-group-modal {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.modal-dialog,
+.modal-content {
+    /* 80% of window height */
+    height: 80%;
+}
+
+.modal-body {
+    /* 100% = dialog height, 120px = header + footer */
+    max-height: calc(100% - 120px);
+    overflow-y: scroll;
+}
+
+.modal-step{
+
 }

@@ -4,9 +4,7 @@ from rest_framework import generics
 from gproject.forms import ElaborationCreateForm
 from NewDjango.settings import GROUPING_COLUMNS
 import pandas, json
-import os
-import xlrd
-import sys
+import os, xlrd, sys
 from django.http import JsonResponse
 from rest_framework.parsers import MultiPartParser, FormParser, FileUploadParser, JSONParser
 from django.contrib.auth.decorators import login_required
@@ -17,7 +15,9 @@ from django.core.files.storage import FileSystemStorage
 from NewDjango.settings import MEDIA_ROOT, MEDIA_URL
 # Create your views here.
 
-class ElaborationListAPIView(generics.ListAPIView):
+
+@method_decorator(login_required, name='dispatch')
+class ElaborationListAPIView(LoginRequiredMixin, generics.ListAPIView):
     lookup_field = 'pk'
     queryset = Elaboration.objects.all()
     serializer_class = ElaborationSerialiser
@@ -33,6 +33,16 @@ def tableColumnsAPIView(request):
 # ,generics.base.CreateModelMixin):
 
 @method_decorator(login_required, name='dispatch')
+class ElaborationGetDataFromFile(LoginRequiredMixin,generics.GenericAPIView):
+    # use to elaborate the json file to be passed to the table
+
+    def get(self,request, format=None):
+        varia = 1
+
+        pass
+
+
+@method_decorator(login_required, name='dispatch')
 class ElaborationCreateAPIView(LoginRequiredMixin,generics.CreateAPIView):
     lookup_field = 'pk'
     form_class = ElaborationCreateForm
@@ -44,23 +54,36 @@ class ElaborationCreateAPIView(LoginRequiredMixin,generics.CreateAPIView):
 
     parser_classes = (MultiPartParser, JSONParser, FileUploadParser, FormParser)
 
-
     def post(self, request, *args, **kwargs):
+
         # intercept the post in order to operate on the saved file
         # after posting the request
-        obj = self.create(request, *args, **kwargs)
 
-        self.excel_to_json(self.temp_file_name)
+        try:
+            input_file = request.FILES['document_input']
+            wb = xlrd.open_workbook(filename=None, file_contents=input_file.read())
+            sh = wb.sheet_by_index(0)
+            file_columns = []
 
-        return obj
+            for rowvalue in range(0, sh.row(0).__len__()):
+                file_columns.append(sh.row(0)[rowvalue].value)
+
+            if (file_columns != GROUPING_COLUMNS):
+                raise()
+
+            obj = self.create(request, *args, **kwargs)
+            self.excel_to_json(self.temp_file_name)
+            return obj
+
+        except:
+            print("Error: File Format issues")
 
     def perform_create(self, serializer):
 
-
         serializer.save()
+
         temp_full_path_file_name = serializer.data['document_input']
         self.temp_file_name = os.path.basename(temp_full_path_file_name)
-
 
     def excel_to_json(self, path_filename):
         full_path_filename = os.path.join(os.path.join(os.path.join(MEDIA_ROOT,'static'),'documents'),path_filename)
@@ -69,14 +92,9 @@ class ElaborationCreateAPIView(LoginRequiredMixin,generics.CreateAPIView):
             wb = xlrd.open_workbook(full_path_filename)
             sh = wb.sheet_by_index(0)
             data_list = []
-            columns = []
 
-            dict = {}
-            for rowvalue in range(0, sh.row(0).__len__()):
-                columns.append(sh.row(0)[rowvalue].value)
-            if (columns != GROUPING_COLUMNS):
-                raise()
             for rownum in range(1, sh.nrows):
+                dict = {}
                 for rowvalue in range(0, sh.row(rownum).__len__()):
                     dict[sh.row(0)[rowvalue].value] = sh.row(rownum)[rowvalue].value
                 data_list.append(dict)

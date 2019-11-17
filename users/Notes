@@ -1,0 +1,15 @@
+- add pop-up for editing
+    - select on click
+    - edit pop-up on double click
+- add pagination
+- add serach
+- add ordering
+
+
+Changes
+- load the modal as the doc finishes loading
+- just pop up the modal when double click
+- add pagination on main table
+- add search on main table
+
+- review when reloading the table how to delete the current rows

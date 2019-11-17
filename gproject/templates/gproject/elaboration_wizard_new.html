@@ -1,0 +1,335 @@
+{% extends "gproject/base_site.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %} Elaborations Summary {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+  <link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+  <link href="/static/build/css/custom.css" rel="stylesheet">
+  <link href="/static/build/css/custom_add.css" rel="stylesheet">
+  <link href="/static/build/css/custom_table.css" rel="stylesheet">
+
+{% endblock stylesheets %}
+
+{% block content %}
+  <div class="right_col" role="main">
+    <div class="">
+      <div class="page-title">
+
+      </div>
+      <div class="clearfix"></div>
+
+      <div class="row">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+            <div class="x_panel">
+                <div class="x_title" id="titles">
+                  <h2>Elaboration Wizards</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+
+                                      <!-- Smart Wizard -->
+                                            <!-- Circles which indicates the steps of the form: -->
+                    <div style="text-align:center;margin-top:5px;">
+
+                            <i class="step fa fa-check-circle" style="font-size:24px"></i>
+                            <i class="step fa fa-check-circle" style="font-size:24px"></i>
+                            <i class="step fa fa-check-circle" style="font-size:24px"></i>
+                            <i class="step fa fa-check-circle" style="font-size:24px"></i>
+
+                    </div>
+
+                    <div style="overflow:auto;">
+                          <div style="float:right;">
+                            <div class="btn-group" >
+
+                              <button id="prevButton" class="btn btn-primary" onclick="nextPrev(-1)" >
+                                 Prev
+                              </button>
+
+                            </div>
+
+                            <div class="btn-group" >
+                              <button id="nextButton" class="btn btn-primary" onclick="nextPrev(1)" >
+                                   Next
+                              </button>
+
+                            </div>
+                          </div>
+                        </div>
+
+                </div>
+              <!-- End SmartWizard Content -->
+            </div>
+            <div class="x_panel">
+                <div class="x_title" id="titles">
+                   <h2>Basic Data</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <!-- Smart Wizard -->
+                        <!-- Circles which indicates the steps of the form: -->
+                    <div id="tabs">
+
+                        <div id="step-1" class="tab">
+                            <div style="overflow:auto;">
+                            <div style="float:left;">
+
+                                 <div class="btn-group" style="margin-top: 5px; ">
+
+                                    <a href="{% static 'template_grouping.xlsx' %}">
+                                       <i class="fa fa-download" style="font-size:20px;">
+
+                                       </i>
+
+                                        <h5 style="display: inline-block;">Download Template </h5>
+
+                                    </a>
+
+                                </div>
+                            </div>
+                            <div style="float:right;">
+                                <div class="btn-group" >
+                                  <a href="#" onclick="post_data({{ user.pk }})">
+
+                                      <h5 style="display: inline-block;">Upload your file </h5>
+
+                                      <i id="btn_upload" class="fa fa-upload" style="font-size:20px;">
+
+                                      </i>
+
+                                    </a>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+    <!-- -->
+                            <form class="form-horizontal form-label-left" >
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> Name <span class="required">*</span>
+                              </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="id_name" required="required" class="form-control col-md-7 col-xs-12">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Description <span class="required">*</span>
+                              </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="id_decription" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Upload File</label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="id_document_input" class="form-control col-md-7 col-xs-12" type="file" name="middle-name" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                              </div>
+                            </div>
+
+
+                          </form>
+
+                        </div>
+
+                        <div id="step-2" class="tab" >
+                            <div id="plus_minus_div_group">
+                              <div style="float:right;">
+                                <div class="btn-group" >
+                                    <label onclick="zoomUpDown(-1)">
+
+                                            <i class="fa fa-minus-circle" style="font-size:20px"></i>
+
+                                    </label>
+
+                                    <label onclick="zoomUpDown(1)">
+
+                                            <i class="fa fa-plus-circle" style="font-size:20px"></i>
+
+                                    </label>
+
+
+                                </div>
+                              </div>
+                            </div>
+
+                            <div>
+                                <div id="dy-table-div" class = "size_11" style="overflow: auto;">
+                                    <table id="dy-table" class="table table-striped table-bordered ">
+                                    <thead>
+                                      <tr>
+                                        <th id="LBSNo">LBSNo</th>
+                                        <th id="Stream">Stream</th>
+                                        <th id="Group">Group</th>
+                                        <th id="First Name">First Name</th>
+                                        <th id="Known Name">Known Name</th>
+                                        <th id="Surname">Surname</th>
+                                        <th id="Nationality">Nationality</th>
+                                        <th id="Nationality Region">Nationality Region</th>
+                                        <th id="Gender">Gender</th>
+                                        <th id="Age">Age</th>
+                                        <th id="Relevant Experience">Relevant Experience</th>
+                                        <th id="Country of Residence">Country of Residence</th>
+                                        <th id="CoR Region">CoR Region</th>
+                                        <th id="GMAT Score(total)">GMAT Score(total)</th>
+                                        <th id="Quant">Quant</th>
+                                        <th id="English Mother Tongue">English Mother Tongue</th>
+                                        <th id="English Scores">English Scores</th>
+                                        <th id="Job Title">Job Title</th>
+                                        <th id="Company Name">Company Name</th>
+                                        <th id="City (Employment)">City (Employment)</th>
+                                        <th id="Country(Employment)">Country(Employment)</th>
+                                        <th id="Professional Category (PO team)">Professional Category (PO team)</th>
+                                        <th id="Job Function">Job Function</th>
+                                        <th id="Email Address">Email Address</th>
+                                        <th id="School Email">School Email</th>
+                                        <th id="Q Score">Q Score</th>
+                                        <th id="Q Score %">Q Score %</th>
+                                        <th id="V Score">V Score</th>
+                                        <th id="V Score %">V Score %</th>
+                                        <th id="AW Score">AW Score</th>
+                                        <th id="AW Score  %">AW Score  %</th>
+                                        <th id="IR Score">IR Score</th>
+                                        <th id="IR Score  %">IR Score  %</th>
+                                        <th id="Second Nationality">Second Nationality</th>
+                                        <th id="Home City">Home City</th>
+                                        <th id="Microeconomics Waiver">Microeconomics Waiver</th>
+                                        <th id="Macroeconomics Waiver">Macroeconomics Waiver</th>
+                                        <th id="DAM Waiver">DAM Waiver </th>
+                                        <th id="Visa at risk">Visa at risk </th>
+                                      </tr>
+                                    </thead>
+
+
+                                    <tbody>
+
+                                    </tbody>
+                                  </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step-3" class="tab">
+                          <div>
+{#                            <span class="table-add glyphicon glyphicon-plus"></span>#}
+                          </div>
+                          <div id="table" class="table-editable" style="overflow: auto;">
+
+                            <table id="edit-table" class="table">
+                                <thead id="edit-table-head">
+
+                                </thead>
+                                <tbody id="edit-table-body">
+{#                                      <tr>#}
+{#                                        <td contenteditable="true">Stir Fry</td>#}
+{#                                        <td contenteditable="true">stir-fry</td>#}
+{#                                        <td>#}
+{#                                          <span class="table-remove glyphicon glyphicon-remove"></span>#}
+{#                                        </td>#}
+{#                                        <td>#}
+{#                                          <span class="table-up glyphicon glyphicon-arrow-up"></span>#}
+{#                                          <span class="table-down glyphicon glyphicon-arrow-down"></span>#}
+{#                                        </td>#}
+{#                                      </tr>#}
+
+                                      <!-- This is our clonable table line -->
+                                      <tr class="hide">
+                                        <td contenteditable="true">Untitled</td>
+                                        <td contenteditable="true">undefined</td>
+                                        <td>
+                                          <span class="table-remove glyphicon glyphicon-remove"></span>
+                                        </td>
+                                        <td>
+                                          <span class="table-up glyphicon glyphicon-arrow-up"></span>
+                                          <span class="table-down glyphicon glyphicon-arrow-down"></span>
+                                        </td>
+                                      </tr>
+
+                                </tbody>
+                            </table>
+                          </div>
+                        </div>
+
+                        <div id="step-4" class="tab">
+                          <h2 class="StepTitle">Step 4 Content</h2>
+                          <p>
+                          </p>
+                        </div>
+
+                    </div>
+
+
+                </div>
+              <!-- End SmartWizard Content -->
+            </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super}}
+  <!-- jQuery Smart Wizard -->
+  <script src="/static/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+
+      <!-- Datatables -->
+  <script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="/static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+  <script src="/static/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="/static/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+  <script src="/static/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+  <script src="/static/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+  <script src="/static/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+  <script src="/static/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+  <script src="/static/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+  <script src="/static/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="/static/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+  <script src="/static/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+  <script src="/static/vendors/jszip/dist/jszip.min.js"></script>
+  <script src="/static/vendors/pdfmake/build/pdfmake.min.js"></script>
+  <script src="/static/vendors/pdfmake/build/vfs_fonts.js"></script>
+
+
+
+{% endblock javascripts %}
+{% block jq%}
+
+
+    <script src="/static/build/js/custom_add.js"></script>
+    <script src="/static/build/js/custom_table.js"></script>
+
+     <script type="text/javascript" language="javascript" class="init">
+
+
+
+
+
+     </script>
+
+{% endblock jq %}
