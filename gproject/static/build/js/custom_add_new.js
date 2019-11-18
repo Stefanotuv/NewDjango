@@ -3,6 +3,7 @@ var zoom_up_down = 11; // 11 - default
 var currentTab = 0; // Current tab is set to be the first tab (0)
 var submitted = false; // check if the form has been submitted
 var editor;
+var records_changed = []; //save the changes from the modal
 
 showTab(currentTab); // Display the current tab
 
@@ -245,6 +246,25 @@ function create_body_and_modal(data, table_body_id){
                 input.addEventListener('change', function() {
                     this.style.border = '1px solid #01d28e';
                     button_modal_submit.disabled = false;
+
+                    // on change save the entire record and save in a list/array
+                    var div_step_changed = this.parentNode.parentElement;
+                    var rec_numbers = div_step_changed.getElementsByClassName("control-label").length;
+                    var div_step_labels = div_step_changed.getElementsByClassName("control-label");
+                    var div_step_inputs = div_step_changed.getElementsByClassName("control-input");
+                    var record_number = parseInt(document.getElementById("record_num").innerText);
+                    debugger;
+                    var record_changed = {};
+                    var record_changed_dict = {};
+
+                    for(var k=0;k<rec_numbers;k++){
+                        record_changed[div_step_labels[k].innerHTML] = div_step_inputs[k].value;
+
+                    }
+                    debugger;
+                    record_changed_dict[record_number]=record_changed;
+                    records_changed.push(record_changed_dict);
+
                  });
 
                 form_group.append(label);
@@ -260,6 +280,7 @@ function create_body_and_modal(data, table_body_id){
                     debugger;
                     var steps = document.getElementsByClassName("modal-step");
 
+                    // hide all steps
                     for(var k=0; k<steps.length;k++){
                         steps[k].style.display = "none";
                     }
