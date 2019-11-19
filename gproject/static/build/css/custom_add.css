@@ -125,12 +125,14 @@ div#table {
 table th {
   position: -webkit-sticky;
   position: sticky;
-  background-color: #000000;
+  background-color: #2A3F54;
   border-right: 1px dotted lightgrey;
   color: white;
   top: 0;
+  vertical-align: middle !important;
 }
 
 table td{
   border-right: 1px dotted lightgrey;
+  vertical-align: middle !important;
 }
