@@ -152,7 +152,7 @@
 
                         <div id="step-2" class="tab">
                             <div id="plus_minus_div_group">
-                              <div style="float:right;">
+                              <div style="align:right;">
                                 <div class="btn-group" >
                                     <label onclick="zoomUpDown(-1)">
 
@@ -170,12 +170,13 @@
                                 </div>
                               </div>
                             </div>
-                          <div>
-{#                            <span class="table-add glyphicon glyphicon-plus"></span>#}
-                          </div>
-                          <div id="table" class="table-editable" style="overflow: auto;">
+                              <div>
+    {#                            <span class="table-add glyphicon glyphicon-plus"></span>#}
+                              </div>
+                            <div style="overflow: auto;">
+                                <div id="table" class="table-editable" >
 
-                            <table id="edit-table" class="w3-table w3-striped w3-bordered w3-hoverable w3-card-4" onchange="console.log('change')">
+                            <table id="edit-table" class="w3-table w3-striped w3-bordered w3-hoverable w3-card-4" style="overflow: auto;">
                                 <thead id="edit-table-head" class="w3-light-grey" valign="center">
 
                                 </thead>
@@ -184,6 +185,7 @@
                                 </tbody>
                             </table>
                           </div>
+                            </div>
                         </div>
 
                         <div id="step-3" class="tab">
@@ -257,6 +259,7 @@
 
     <script src="/static/build/js/custom_add_new.js"></script>
     <script src="/static/build/js/custom_table.js"></script>
+{#    <script src="/static/build/js/paginator.js"></script>#}
 
      <script type="text/javascript" language="javascript" class="init">
 

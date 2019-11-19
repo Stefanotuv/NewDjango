@@ -1,4 +1,3 @@
-debugger;
 var zoom_up_down = 11; // 11 - default
 var currentTab = 0; // Current tab is set to be the first tab (0)
 var submitted = false; // check if the form has been submitted
@@ -11,7 +10,6 @@ function showTab(n) {
 
   // This function will display the specified tab of the form ...
   "use strict";
-  debugger;
   var  x = document.getElementsByClassName("tab");
   x[n].style.display = "block";
   // ... and fix the Previous/Next buttons:
@@ -38,7 +36,6 @@ function showTab(n) {
 
 function nextPrev(n) {
   "use strict";
-  debugger;
 
   var x = document.getElementsByClassName("tab");
    x[currentTab].style.display = "none";
@@ -64,7 +61,6 @@ function fixStepIndicator(n) {
 
 function zoomUpDown(n) {
     "use strict";
-    debugger;
     var zoom_class = "";
 
     if (n===1){
@@ -160,7 +156,6 @@ function get_json_data(file_path_to_load_xls) {
 // get the Json data into the table
 function table_load(data){
     "use strict"
-    debugger;
 create_header(data,"edit-table-head");
 create_body_and_modal(data,"edit-table-head");
 
@@ -219,21 +214,21 @@ function create_body_and_modal(data, table_body_id){
 
         var div_step = document.createElement("div"); // for each row create a div_step for the modal
         div_step.id = "modal-step-" + i; // steps id starting from 1 (the data include the columns in the row 0)
-        debugger;
         div_step.className = "modal-step";
 
-        var th = document.createElement("th");
-        th.innerHTML = i;
-        th.id = "id-col-#-" + parseInt(i);
-        tr.appendChild(th);
+        // add the first column for the record number
+        var td = document.createElement("td");
+        td.innerHTML = i;
+        td.id = "id-col-#-" + parseInt(i);
+        tr.appendChild(td);
 
         for (key in data[i]) {
             if (cols.indexOf(key) !== -1) {
 
                 // value of each cell
-                th = document.createElement("th");
-                th.innerHTML = data[i][key];
-                th.id = "id-col-"+ key + "-" + parseInt(i);
+                td = document.createElement("td");
+                td.innerHTML = data[i][key];
+                td.id = "id-col-"+ key + "-" + parseInt(i);
 
                 // form_group to group the label and input for the modal table
                 form_group = document.createElement("div");
@@ -266,7 +261,6 @@ function create_body_and_modal(data, table_body_id){
                     var div_step_labels = div_step_changed.getElementsByClassName("control-label");
                     var div_step_inputs = div_step_changed.getElementsByClassName("control-input");
                     var record_number = parseInt(document.getElementById("record_num").innerText);
-                    debugger;
                     var record_changed = {};
 
 
@@ -274,7 +268,6 @@ function create_body_and_modal(data, table_body_id){
                         record_changed[div_step_labels[k].innerHTML] = div_step_inputs[k].value;
 
                     }
-                    debugger;
                     record_changed_dict[record_number]=record_changed;
 
                  });
@@ -284,12 +277,12 @@ function create_body_and_modal(data, table_body_id){
                 div_step.append(form_group);
 
                 // double click event on each cell of the main table to open the modal in the current record
-                th.ondblclick = function(){
+                td.ondblclick = function(){
                     var rowId = this.parentNode.rowIndex;
                     record_num.innerText = rowId;
 
                     // hide all steps
-                    debugger;
+
                     var steps = document.getElementsByClassName("modal-step");
 
                     // hide all steps
@@ -301,13 +294,12 @@ function create_body_and_modal(data, table_body_id){
                     document.getElementById("modal-step-"+rowId).style.display = "block";
 
 
-                    debugger;
                     $('#update-modal').modal('show');
 
                 }
 
 
-                tr.appendChild(th);
+                tr.appendChild(td);
             }
 
         }
@@ -325,7 +317,6 @@ function modal_next_prev(n){
     "use strict"
     var record_num = parseInt(document.getElementById("record_num").innerText);
     var total_records = document.getElementsByClassName("modal-step").length;
-    debugger;
     document.getElementById("modal-step-"+ record_num).style.display = "none";
     if((record_num+n) === 0){
         document.getElementById("modal-step-"+ (total_records - 1)).style.display = "block";
@@ -345,10 +336,8 @@ function modal_next_prev(n){
 function submit_change_table() {
     "use strict"
     console.log("pressed");
-    debugger;
     for(var key in record_changed_dict){
         for (var key_key in record_changed_dict[key]){
-            debugger;
             document.getElementById(("id-col-" + key_key + "-" + parseInt(key))).innerHTML =
                 record_changed_dict[key][key_key];
 

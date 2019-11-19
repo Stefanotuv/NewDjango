@@ -106,18 +106,31 @@ input.invalid {
 .modal-step{
 
 }
+/*thead{*/
+/*    display:block;*/
+/*}*/
 
-.w3-table th {
-  vertical-align: middle;
-  text-align: center;
+/*tbody{*/
+/*  display:block;*/
+/*  height:400px;*/
+/*  overflow:auto;*/
+/*  width:100%;*/
+/*}*/
+div#table {
+  display: inline-block;
+  height: 400px;
+
 }
 
-.w3-table  tbody{
-  display:block;
-  height:400px;
-  overflow:auto;
+table th {
+  position: -webkit-sticky;
+  position: sticky;
+  background-color: #000000;
+  border-right: 1px dotted lightgrey;
+  color: white;
+  top: 0;
 }
 
-.w3-table thead tr{
-    display:block;
+table td{
+  border-right: 1px dotted lightgrey;
 }
