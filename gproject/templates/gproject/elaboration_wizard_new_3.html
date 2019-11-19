@@ -5,12 +5,7 @@
 
 {% block stylesheets %}
   {{ block.super }}
-  <link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-
+  <link href="/static/vendors/w3.css" rel="stylesheet" >
   <link href="/static/build/css/custom.css" rel="stylesheet">
   <link href="/static/build/css/custom_add.css" rel="stylesheet">
   <link href="/static/build/css/custom_table.css" rel="stylesheet">
@@ -117,7 +112,7 @@
 
                                       </i>
 
-                                    </a>
+                                  </a>
 
                                 </div>
 
@@ -180,8 +175,8 @@
                           </div>
                           <div id="table" class="table-editable" style="overflow: auto;">
 
-                            <table id="edit-table" class="table" onchange="console.log('change')">
-                                <thead id="edit-table-head">
+                            <table id="edit-table" class="w3-table w3-striped w3-bordered w3-hoverable w3-card-4" onchange="console.log('change')">
+                                <thead id="edit-table-head" class="w3-light-grey" valign="center">
 
                                 </thead>
                                 <tbody id="edit-table-body">
@@ -234,7 +229,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button id="button_modal_submit" type="button" class="btn btn-primary" disabled>Submit</button>
+                            <button id="button_modal_submit" type="button" class="btn btn-primary" onclick="submit_change_table()" disabled>Submit</button>
                             <button id="button_modal_close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -250,19 +245,6 @@
   <!-- jQuery Smart Wizard -->
   <script src="/static/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
 
-      <!-- Datatables -->
-  <script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="/static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-  <script src="/static/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-  <script src="/static/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-  <script src="/static/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-  <script src="/static/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-  <script src="/static/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-  <script src="/static/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-  <script src="/static/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-  <script src="/static/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="/static/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-  <script src="/static/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
   <script src="/static/vendors/jszip/dist/jszip.min.js"></script>
   <script src="/static/vendors/pdfmake/build/pdfmake.min.js"></script>
   <script src="/static/vendors/pdfmake/build/vfs_fonts.js"></script>

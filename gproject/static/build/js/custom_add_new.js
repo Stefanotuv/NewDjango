@@ -3,7 +3,7 @@ var zoom_up_down = 11; // 11 - default
 var currentTab = 0; // Current tab is set to be the first tab (0)
 var submitted = false; // check if the form has been submitted
 var editor;
-var records_changed = []; //save the changes from the modal
+var record_changed_dict = {}; //save the changes from the modal
 
 showTab(currentTab); // Display the current tab
 
@@ -121,10 +121,9 @@ function post_data(user) {
             success: function(data) {
                 document.getElementById("nextButton").disabled = false;
                 document.getElementById("btn_upload").style = "font-size:20px; color: #00bb00";
-                submitted = true;
 
                 get_json_data(data.document_input); // send ajax get to load the table and the modal
-
+                submitted = true;
             },
             error : function(xhr,errmsg,err) {
                 document.getElementById("nextButton").disabled = true;
@@ -166,12 +165,15 @@ create_header(data,"edit-table-head");
 create_body_and_modal(data,"edit-table-head");
 
 function create_header(data, table_head_id){
-
+    if (submitted === true){
+        document.getElementById("edit-table-head").innerText = "";
+    }
     var i;
     var cols=[];
+    cols.push('#')
     for(var key in data[0]){
         if (cols.indexOf(key) === -1) {
-                    cols.push(key)
+                    cols.push(key);
                     // console.log(key);
                 }
         }
@@ -185,6 +187,11 @@ function create_header(data, table_head_id){
     }
 
 function create_body_and_modal(data, table_body_id){
+
+    if (submitted === true){
+        document.getElementById("edit-table-body").innerText = "";
+    }
+
     var i;
     var cols=[];
 
@@ -215,12 +222,18 @@ function create_body_and_modal(data, table_body_id){
         debugger;
         div_step.className = "modal-step";
 
+        var th = document.createElement("th");
+        th.innerHTML = i;
+        th.id = "id-col-#-" + parseInt(i);
+        tr.appendChild(th);
+
         for (key in data[i]) {
             if (cols.indexOf(key) !== -1) {
 
                 // value of each cell
-                var th = document.createElement("th");
+                th = document.createElement("th");
                 th.innerHTML = data[i][key];
+                th.id = "id-col-"+ key + "-" + parseInt(i);
 
                 // form_group to group the label and input for the modal table
                 form_group = document.createElement("div");
@@ -240,7 +253,7 @@ function create_body_and_modal(data, table_body_id){
                 label.textContent = key;
                 label.value = key;
                 input.value = data[i][key];
-                input.id = "id_" + key;
+                input.id = "id-col-modal" + key + parseInt(i);
 
                 // event listener to record changes in the input fields for the modal table
                 input.addEventListener('change', function() {
@@ -255,7 +268,7 @@ function create_body_and_modal(data, table_body_id){
                     var record_number = parseInt(document.getElementById("record_num").innerText);
                     debugger;
                     var record_changed = {};
-                    var record_changed_dict = {};
+
 
                     for(var k=0;k<rec_numbers;k++){
                         record_changed[div_step_labels[k].innerHTML] = div_step_inputs[k].value;
@@ -263,7 +276,6 @@ function create_body_and_modal(data, table_body_id){
                     }
                     debugger;
                     record_changed_dict[record_number]=record_changed;
-                    records_changed.push(record_changed_dict);
 
                  });
 
@@ -324,6 +336,24 @@ function modal_next_prev(n){
     }else{
        document.getElementById("modal-step-"+ (record_num + n)).style.display = "block";
        document.getElementById("record_num").innerText = (record_num + n);
+    }
+
+
+}
+
+
+function submit_change_table() {
+    "use strict"
+    console.log("pressed");
+    debugger;
+    for(var key in record_changed_dict){
+        for (var key_key in record_changed_dict[key]){
+            debugger;
+            document.getElementById(("id-col-" + key_key + "-" + parseInt(key))).innerHTML =
+                record_changed_dict[key][key_key];
+
+        }
+
     }
 
 

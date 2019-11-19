@@ -106,3 +106,18 @@ input.invalid {
 .modal-step{
 
 }
+
+.w3-table th {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.w3-table  tbody{
+  display:block;
+  height:400px;
+  overflow:auto;
+}
+
+.w3-table thead tr{
+    display:block;
+}
