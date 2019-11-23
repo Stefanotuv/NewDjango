@@ -1,8 +1,9 @@
-var zoom_up_down = 11; // 11 - default
+
 var currentTab = 0; // Current tab is set to be the first tab (0)
 var submitted = false; // check if the form has been submitted
 var editor;
 var record_changed_dict = {}; //save the changes from the modal
+var current_data_set;
 
 showTab(currentTab); // Display the current tab
 
@@ -61,30 +62,25 @@ function fixStepIndicator(n) {
 
 function zoomUpDown(n) {
     "use strict";
-    var zoom_class = "";
-
+    var current_f_s, new_f_s;
     if (n===1){
-        if (zoom_up_down<16){
-        zoom_up_down = zoom_up_down + 1;
-
-        zoom_class = "size_" + zoom_up_down;
-        document.getElementById('edit-table').className = "table " + zoom_class;
-
+        current_f_s = parseInt(document.getElementById('table').style.fontSize.split('px')[0]);
+        new_f_s = current_f_s + 1;
+        document.getElementById('table').style.fontSize = new_f_s + 'px';
         }
-    }
+
 
     if (n===-1){
+        current_f_s = parseInt(document.getElementById('table').style.fontSize.split('px')[0]);
+        if (current_f_s - 1 > 0){
+            new_f_s = current_f_s - 1;
+        }else{
+            new_f_s = current_f_s
+        }
 
-        if (zoom_up_down>8){
-        zoom_up_down = zoom_up_down - 1;
-
-        zoom_class = "size_" + zoom_up_down;
-        document.getElementById('edit-table').className = "table " + zoom_class;
+        document.getElementById('table').style.fontSize = new_f_s + 'px';
 
         }
-    }
-
-
 
 }
 
@@ -156,8 +152,9 @@ function get_json_data(file_path_to_load_xls) {
 // get the Json data into the table
 function table_load(data){
     "use strict"
-create_header(data,"edit-table-head");
-create_body_and_modal(data,"edit-table-head");
+    current_data_set = data;
+    create_header(data,"edit-table-head");
+    create_body_and_modal(data,"edit-table-head");
 
 function create_header(data, table_head_id){
     if (submitted === true){
@@ -165,7 +162,7 @@ function create_header(data, table_head_id){
     }
     var i;
     var cols=[];
-    cols.push('#')
+    cols.push('#'); // intial column to store the record number
     for(var key in data[0]){
         if (cols.indexOf(key) === -1) {
                     cols.push(key);
@@ -184,36 +181,36 @@ function create_header(data, table_head_id){
 function create_body_and_modal(data, table_body_id){
 
     if (submitted === true){
+        // if the data have been submitted before, reset the table
         document.getElementById("edit-table-body").innerText = "";
     }
 
     var i;
-    var cols=[];
+    var cols=[]; // columns for the table
 
-    // columns for both main table and modal
+    // column-headers for both main table and modal
+    // the first row of the data is a dictionary with all headers
     for(var key in data[0]){
         if (cols.indexOf(key) === -1) {
                     cols.push(key);
                 }
         }
 
-    // for the main table
+    // create the body for the main table
     var table_body = document.getElementById("edit-table-body");
 
     // for the modal table
     var div_form = document.createElement("div");
     var button_modal_submit = document.getElementById("button_modal_submit");
     var record_num = document.getElementById("record_num");
-    var input;
-    var label;
-    var form_group;
+    var input, label, form_group;
 
-    for (i = 1; i < data.length; i++) {
-
+    for (i = 0; i < data.length; i++) {
+        debugger;
         var tr = table_body.insertRow(-1); // create a row on the main table
 
         var div_step = document.createElement("div"); // for each row create a div_step for the modal
-        div_step.id = "modal-step-" + i; // steps id starting from 1 (the data include the columns in the row 0)
+        div_step.id = "modal-step-" + (parseInt(i));
         div_step.className = "modal-step";
 
         // add the first column for the record number
@@ -230,6 +227,7 @@ function create_body_and_modal(data, table_body_id){
                 td.innerHTML = data[i][key];
                 td.id = "id-col-"+ key + "-" + parseInt(i);
 
+                // *********** modal template form start ****************************
                 // form_group to group the label and input for the modal table
                 form_group = document.createElement("div");
                 form_group.className = "form-group";
@@ -251,6 +249,7 @@ function create_body_and_modal(data, table_body_id){
                 input.id = "id-col-modal" + key + parseInt(i);
 
                 // event listener to record changes in the input fields for the modal table
+                // event listener for the changes in the modal
                 input.addEventListener('change', function() {
                     this.style.border = '1px solid #01d28e';
                     button_modal_submit.disabled = false;
@@ -279,7 +278,7 @@ function create_body_and_modal(data, table_body_id){
                 // double click event on each cell of the main table to open the modal in the current record
                 td.ondblclick = function(){
                     var rowId = this.parentNode.rowIndex;
-                    record_num.innerText = rowId;
+                    record_num.innerText = rowId -1 ;
 
                     // hide all steps
 
@@ -291,7 +290,7 @@ function create_body_and_modal(data, table_body_id){
                     }
 
                     // show only selected step
-                    document.getElementById("modal-step-"+rowId).style.display = "block";
+                    document.getElementById("modal-step-"+ (rowId-1)).style.display = "block";
 
 
                     $('#update-modal').modal('show');
@@ -318,12 +317,12 @@ function modal_next_prev(n){
     var record_num = parseInt(document.getElementById("record_num").innerText);
     var total_records = document.getElementsByClassName("modal-step").length;
     document.getElementById("modal-step-"+ record_num).style.display = "none";
-    if((record_num+n) === 0){
-        document.getElementById("modal-step-"+ (total_records - 1)).style.display = "block";
-        document.getElementById("record_num").innerText = (total_records - 1);
-    } else if((record_num+n) === total_records){
-        document.getElementById("modal-step-"+ 1).style.display = "block";
-        document.getElementById("record_num").innerText = 1;
+    if((record_num + n) === -1){
+        document.getElementById("modal-step-"+ (total_records -1)).style.display = "block";
+        document.getElementById("record_num").innerText = (total_records -1);
+    } else if((record_num + n) === total_records){
+        document.getElementById("modal-step-"+ 0).style.display = "block";
+        document.getElementById("record_num").innerText = 0;
     }else{
        document.getElementById("modal-step-"+ (record_num + n)).style.display = "block";
        document.getElementById("record_num").innerText = (record_num + n);
@@ -332,7 +331,7 @@ function modal_next_prev(n){
 
 }
 
-
+// changes from the modal posted to the main table
 function submit_change_table() {
     "use strict"
     console.log("pressed");
@@ -346,4 +345,15 @@ function submit_change_table() {
     }
 
 
+}
+
+function run_checks(){
+    "use strict"
+    debugger;
+    var headers_check = check_columns_headers(current_data_set);
+    debugger;
+    var rows_checks =  check_by_row(current_data_set,headers_check);
+    debugger;
+    issues_summary(headers_check,rows_checks);
+    document.getElementById("x_panel_elaboration").style.display = "inline-block";
 }

@@ -38,10 +38,23 @@ input.invalid {
   margin-bottom: 0px;
 }
 
+#div_group_button{
+  padding: 5px;
+  border: 1px solid ;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  align-items: center;
+  vertical-align: middle;
+  border-radius: 5px;
+}
+
+
 .plusMinus {
   height: 20px;
   width: 20px;
-  margin: 0 10px;
+  /*margin-top: 5px;*/
+  /*margin: 0 10px;*/
+
   background-color: #440044;
   border: #440044;
   border-radius: 100%;
@@ -50,6 +63,7 @@ input.invalid {
 }
 
 #plus_minus_div_group{
+  padding-top: 7px;
   height: 25px
 }
 
@@ -122,6 +136,12 @@ div#table {
 
 }
 
+div#table_results{
+  display: inline-block;
+  height: 300px;
+
+}
+
 table th {
   position: -webkit-sticky;
   position: sticky;
@@ -129,7 +149,7 @@ table th {
   border-right: 1px dotted lightgrey;
   color: white;
   top: 0;
-  vertical-align: middle !important;
+  vertical-align: middle !important ;
 }
 
 table td{

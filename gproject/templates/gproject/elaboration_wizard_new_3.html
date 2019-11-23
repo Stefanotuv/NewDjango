@@ -70,6 +70,52 @@
                 </div>
               <!-- End SmartWizard Content -->
             </div>
+
+            <div class="x_panel" id="x_panel_elaboration" style="display: none;">
+                <div class="x_title" id="titles">
+                  <h2>Data Review Report</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+
+                                      <!-- Smart Wizard -->
+                                            <!-- Circles which indicates the steps of the form: -->
+                    <div style="display: inline-block;margin-bottom: 4px;">
+                      Input data have been reviewed for consistency. Please review the errors and warning below and make the required changes
+                    </div>
+
+
+                    <div style="overflow:auto;">
+                            <div class="col-md-12 col-sm-12 col-xs-12" style="overflow: auto;">
+                                <div id="table_results" class="table-editable" style="font-size: 10px;">
+
+                                    <table id="table_results" class="w3-table w3-striped w3-bordered w3-hoverable" style="overflow: auto;">
+                                        <thead id="table_results_head" class="w3-light-grey" valign="center">
+                                            <th> Type </th>  <!-- warning vs error -->
+                                            <th> Row/ Column</th>
+                                            <th> Issues </th>
+                                            <th> Remediation </th>
+                                        </thead>
+                                        <tbody id="table_results_body">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+                    </div>
+
+                </div>
+              <!-- End SmartWizard Content -->
+            </div>
+
             <div class="x_panel">
                 <div class="x_title" id="titles">
                    <h2>Basic Data</h2>
@@ -151,45 +197,124 @@
                         </div>
 
                         <div id="step-2" class="tab">
-                            <div id="plus_minus_div_group">
-                              <div style="align:right;">
-                                <div class="btn-group" >
-                                    <label onclick="zoomUpDown(-1)">
 
-                                            <i class="fa fa-minus-circle" style="font-size:20px"></i>
+                            <div class="col-md-12 col-sm-12 col-xs-12" id="div_group_button" style="">
 
-                                    </label>
-                                    <label>Zoom In/Out</label>
-                                    <label onclick="zoomUpDown(1)">
+                                <div class="col-md-4 col-sm-4 col-xs-12" align="center">
+                                    <div id="plus_minus_div_group">
+                                  <div style="align:right;">
+                                    <div class="btn-group" >
+                                        <label onclick="zoomUpDown(-1)">
 
-                                            <i class="fa fa-plus-circle" style="font-size:20px"></i>
+                                                <i class="fa fa-minus-circle" style="font-size:20px"></i>
 
-                                    </label>
+                                        </label>
+                                        <label>Zoom In/Out</label>
+                                        <label onclick="zoomUpDown(1)">
 
+                                                <i class="fa fa-plus-circle" style="font-size:20px"></i>
+
+                                        </label>
+
+                                    </div>
+                                  </div>
+                                </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-4 col-xs-12" align="center">
+
+                                        <div class="btn-group" >
+
+                                          <button id="prevButton" class="btn btn-info" onclick="run_checks()" >
+                                             Review Input Data
+                                          </button>
+
+                                        </div>
 
                                 </div>
-                              </div>
+
+                                <div class="col-md-4 col-sm-4 col-xs-12" align="center">
+                                    <div class="btn-group" >
+
+                              <button id="prevButton" class="btn btn-info" onclick="" >
+                                 Confirm Changes
+                              </button>
+
                             </div>
-                              <div>
-    {#                            <span class="table-add glyphicon glyphicon-plus"></span>#}
-                              </div>
-                            <div style="overflow: auto;">
-                                <div id="table" class="table-editable" >
 
-                            <table id="edit-table" class="w3-table w3-striped w3-bordered w3-hoverable w3-card-4" style="overflow: auto;">
-                                <thead id="edit-table-head" class="w3-light-grey" valign="center">
-
-                                </thead>
-                                <tbody id="edit-table-body">
-
-                                </tbody>
-                            </table>
-                          </div>
                             </div>
+
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12" style="overflow: auto;">
+                                <div id="table" class="table-editable" style="font-size: 10px;" >
+
+                                    <table id="edit-table" class="w3-table w3-striped w3-bordered w3-hoverable" style="overflow: auto;">
+                                        <thead id="edit-table-head" class="w3-light-grey" valign="center">
+
+                                        </thead>
+                                        <tbody id="edit-table-body">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div id="step-3" class="tab">
-                          <h2 class="StepTitle">Step 4 Content</h2>
+
+                             <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <div class="x_panel">
+                                    <div class="x_title">
+                                      <h2>Line graph<small>Sessions</small></h2>
+                                      <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        <li class="dropdown">
+                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+
+                                        </li>
+                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                      </ul>
+                                      <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                      <canvas id="lineChart"></canvas>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <div class="x_panel">
+                                    <div class="x_title">
+                                      <h2>Bar graph <small>Sessions</small></h2>
+                                      <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        <li class="dropdown">
+                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                          <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Settings 1</a>
+                                            </li>
+                                            <li><a href="#">Settings 2</a>
+                                            </li>
+                                          </ul>
+                                        </li>
+                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                      </ul>
+                                      <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                      <canvas id="mybarChart"></canvas>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
                           <p>
                           </p>
                         </div>
@@ -213,31 +338,31 @@
     </div>
   </div>
 
-              <!----modal starts here--->
-            <div id="update-modal" class="modal fade  bd-example-modal-xl" role='dialog'>
-                <div class="modal-dialog modal-xl" style="width:800px">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <div style="text-align:center;margin-top:5px; ">
-                                <i id="btn_prev_rec" class="fa fa-backward" onclick="modal_next_prev(-1)" style="font-size:20px; display: inline-block;"> </i>
-                                <label id="record_num" style = "display: inline-block; margin-left: 5px; margin-right: 5px;" class="modal-title"> </label>
-                                <i id="btn_next_rec" class="fa fa-forward" onclick="modal_next_prev(1)" style="font-size:20px; display: inline-block;"> </i>
-                            </div>
-                        </div>
-                        <div class="modal-body" id= "modal-body" style="overflow: auto;">
-
-                        {# modal body generated with javascript #}
-
-                        </div>
-                        <div class="modal-footer">
-                            <button id="button_modal_submit" type="button" class="btn btn-primary" onclick="submit_change_table()" disabled>Submit</button>
-                            <button id="button_modal_close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<!----modal starts here--->
+<div id="update-modal" class="modal fade  bd-example-modal-xl" role='dialog'>
+            <div class="modal-dialog modal-xl" style="width:800px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <div style="text-align:center;margin-top:5px; ">
+                            <i id="btn_prev_rec" class="fa fa-backward" onclick="modal_next_prev(-1)" style="font-size:20px; display: inline-block;"> </i>
+                            <label id="record_num" style = "display: inline-block; margin-left: 5px; margin-right: 5px;" class="modal-title"> </label>
+                            <i id="btn_next_rec" class="fa fa-forward" onclick="modal_next_prev(1)" style="font-size:20px; display: inline-block;"> </i>
                         </div>
                     </div>
-                  </div>
+                    <div class="modal-body" id= "modal-body" style="overflow: auto;">
+
+                    {# modal body generated with javascript #}
+
+                    </div>
+                    <div class="modal-footer">
+                        <button id="button_modal_submit" type="button" class="btn btn-primary" onclick="submit_change_table()" disabled>Submit</button>
+                        <button id="button_modal_close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
               </div>
-            <!--Modal ends here--->
+          </div>
+<!--Modal ends here--->
 
 
 {% endblock content %}
@@ -256,10 +381,14 @@
 {% endblock javascripts %}
 {% block jq%}
 
-
+    <script src="/static/build/js/custom_value_lists_and_ranges.js"></script>
     <script src="/static/build/js/custom_add_new.js"></script>
-    <script src="/static/build/js/custom_table.js"></script>
-{#    <script src="/static/build/js/paginator.js"></script>#}
+
+
+
+    <script src="/static/build/js/custom_elaborations.js"></script>
+    <script src="/static/vendors/Chart.js/dist/Chart.min.js"></script>
+
 
      <script type="text/javascript" language="javascript" class="init">
 
