@@ -7,6 +7,7 @@
 //
 // 3) create a list of issues
 
+var issue_summary = 0; // initial value to check if the check has already been performed
 
 function check_columns_headers(data){
 
@@ -188,12 +189,19 @@ function issues_summary(headers_check,rows_check){
     "use strict"
     // 1 - create the summary table
     var table_results_body = document.getElementById("table_results_body");
+
+    if(issue_summary !==0){
+        table_results_body.innerText = "";
+    }
+
     for (var i =0; i<headers_check['not_included'].length;i++){
 
         var tr_c = table_results_body.insertRow(-1);
+        tr_c.ondblclick = function(){ window.alert("download template file to add the missing column");};
 
         var td_1 = document.createElement("td");
-        td_1.innerHTML = "Error";
+
+        td_1.innerHTML = " <i class=\"fa fa-times-circle\"></i> Error";
         td_1.style.color = "red";
 
         var td_2 = document.createElement("td");
@@ -205,7 +213,8 @@ function issues_summary(headers_check,rows_check){
         td_3.style.color = "red";
 
         var td_4 = document.createElement("td");
-        td_4.innerHTML = "Missing column. The colum need to be added to the input file. please correct and re-upload";
+        td_4.innerHTML = "Missing mandatory column in the input file. " +
+            "Please download the template file, correct and re-upload";
         td_4.style.color = "red";
 
         tr_c.append(td_1); tr_c.append(td_2); tr_c.append(td_3); tr_c.append(td_4);
@@ -214,22 +223,45 @@ function issues_summary(headers_check,rows_check){
     debugger;
     for(var k=0; k<rows_check.length;k++){
         var tr_r = table_results_body.insertRow(-1);
+
+        tr_r.ondblclick = function(){
+            debugger;
+            var rowId = this.rowIndex - (headers_check['not_included'].length);
+
+            record_num.innerText = rowId -1 ;
+
+            // hide all steps
+
+            var steps = document.getElementsByClassName("modal-step");
+
+            // hide all steps
+            for(var k=0; k<steps.length;k++){
+                steps[k].style.display = "none";
+            }
+
+            // show only selected step
+            document.getElementById("modal-step-"+ (rowId-1)).style.display = "block";
+
+
+            $('#update-modal').modal('show');
+        };
+
         var str = "";
 
         var td_r_1 = document.createElement("td");
-        td_r_1.innerHTML = "Warning";
-        td_r_1.style.color = "orange";
+        td_r_1.innerHTML = "<i class=\"fa fa-exclamation-triangle\"></i> Warning";
+        td_r_1.style.color = "#f45905";
 
         var td_r_2 = document.createElement("td");
         td_r_2.innerHTML = "row: " + parseInt(k);
-        td_r_2.style.color = "orange";
+        td_r_2.style.color = "#f45905";
 
         var td_r_3 = document.createElement("td");
-        td_r_3.style.color = "orange";
+        td_r_3.style.color = "#f45905";
 
         var td_r_4 = document.createElement("td");
-        td_r_4.innerHTML = "review and correct the data";
-        td_r_4.style.color = "orange";
+        td_r_4.innerHTML = "review and correct the data in the table";
+        td_r_4.style.color = "#f45905";
 
         debugger;
         for(var key in rows_check[k]){
@@ -239,15 +271,18 @@ function issues_summary(headers_check,rows_check){
 
         }
 
-        td_r_3.innerHTML = str;
+        // td_r_3.innerHTML = str; // display all the issues details
+
 
 
         if (str !== ""){
+            td_r_3.innerHTML = "review for empty cells, values on in the list or values on in range"
             tr_r.append(td_r_1); tr_r.append(td_r_2); tr_r.append(td_r_3); tr_r.append(td_r_4);
             table_results_body.append(tr_r);
         }
 
     }
 
+    issue_summary = 1;
     // 2 - change colour of the entries in the table
 }

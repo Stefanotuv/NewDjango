@@ -1,0 +1,15 @@
+{
+  "user" : "default",
+  "settings": {
+    "First Name": {
+      "empty": "no",
+      "value": [],
+      "range": []
+    },
+    "Surname": {
+      "empty": "no",
+      "value": [],
+      "range": []
+    }
+  }
+}

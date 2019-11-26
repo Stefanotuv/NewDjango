@@ -1,0 +1,23 @@
+<div id="update-modal" class="modal fade  bd-example-modal-xl" role='dialog'>
+            <div class="modal-dialog modal-xl" style="width:800px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <div style="text-align:center;margin-top:5px; ">
+                            <i id="btn_prev_rec" class="fa fa-backward" onclick="modal_next_prev(-1)" style="font-size:20px; display: inline-block;"> </i>
+                            <label id="record_num" style = "display: inline-block; margin-left: 5px; margin-right: 5px;" class="modal-title"> </label>
+                            <i id="btn_next_rec" class="fa fa-forward" onclick="modal_next_prev(1)" style="font-size:20px; display: inline-block;"> </i>
+                        </div>
+                    </div>
+                    <div class="modal-body" id= "modal-body" style="overflow: auto;">
+
+                    {# modal body generated with javascript #}
+
+                    </div>
+                    <div class="modal-footer">
+                        <button id="button_modal_submit" type="button" class="btn btn-primary" onclick="submit_change_table()" disabled>Submit</button>
+                        <button id="button_modal_close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+              </div>
+          </div>

@@ -124,8 +124,6 @@ class GPElaborationCreateView(LoginRequiredMixin,CreateView):
             json.dump(data_list, json_file)
 
 
-
-
 @method_decorator(login_required, name='dispatch')
 class GPElaborationUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Elaboration

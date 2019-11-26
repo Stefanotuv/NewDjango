@@ -1,0 +1,179 @@
+{% extends "gproject/base_site.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %} Elaborations Settings {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+    <link href="/static/vendors/w3.css" rel="stylesheet" >
+    <link href="/static/build/css/custom.css" rel="stylesheet">
+    <link href="/static/build/css/custom_add.css" rel="stylesheet">
+    <link href="/static/build/css/custom_table.css" rel="stylesheet">
+    <link href="/static/build/css/custom_dropdown.css" rel="stylesheet">
+
+{% endblock stylesheets %}
+
+{% block content %}
+  <div class="right_col" role="main">
+    <div class="">
+      <div class="page-title">
+
+      </div>
+      <div class="clearfix"></div>
+
+      <div class="row">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+            <div class="x_panel">
+                <div class="x_title" id="titles">
+                  <h2>Elaboration Settings</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="overflow: auto;text-align: center;">
+                        <div id="table-settings" class="table-editable" style="font-size: 10px;" >
+
+                            <table id="edit-table-settings" class="w3-table w3-striped w3-bordered w3-hoverable" style="overflow: auto;">
+                                <thead id="edit-table-settings-head" class="w3-light-grey" valign="center">
+                                        <tr>
+                                            <th > # </th>
+                                            <th> Field Name </th>
+                                            <th style="width: 15%;text-align: center;"> Required Not Empty </th>
+                                            <th style="text-align: center;"> List of Values </th>
+                                            <th style="text-align: center;"> Range of Values </th>
+                                            <th style="text-align: center;">
+
+                                                <a style="color: white;" onclick="add_settings();"><i class="fa fa-plus-circle"></i> Add field </a>
+
+                                            </th>
+                                        </tr>
+                                </thead>
+                                <tbody id="edit-table-settings-body" >
+                                        <tr>
+                                            <td> One </td>
+                                            <td > name </td>
+                                            <td  style="text-align: center;">
+                                                <div valign="center" style="display: inline-block;" >
+                                                    <label class="switch">
+                                                      <input type="checkbox">
+                                                      <span class="slider round"></span>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td >
+                                                <section class="container_dropdown">
+                                                  <div class="dropdown_dd">
+                                                    <select name="one" class="dropdown_dd-select">
+                                                      <option value="">Select…</option>
+                                                      <option value="1">Option #1</option>
+                                                      <option value="2">Option #2</option>
+                                                      <option value="3">Option #3</option>
+                                                    </select>
+                                                  </div>
+                                                  <div class="dropdown_dd">
+                                                    <select name="one" class="dropdown_dd-select">
+                                                      <option value="">Select…</option>
+                                                      <option value="1">Option #1</option>
+                                                      <option value="2">Option #2</option>
+                                                      <option value="3">Option #3</option>
+                                                    </select>
+                                                  </div>
+                                                </section>
+
+                                            </td>
+                                            <td >
+                                                <section class="container_dropdown">
+                                                  <div class="dropdown_dd">
+                                                    <select name="one" class="dropdown_dd-select">
+                                                      <option value="">Select…</option>
+                                                      <option value="1">Option #1</option>
+                                                      <option value="2">Option #2</option>
+                                                      <option value="3">Option #3</option>
+                                                    </select>
+                                                  </div>
+                                                  <div class="dropdown_dd">
+                                                    <select name="one" class="dropdown_dd-select">
+                                                      <option value="">Select…</option>
+                                                      <option value="1">Option #1</option>
+                                                      <option value="2">Option #2</option>
+                                                      <option value="3">Option #3</option>
+                                                    </select>
+                                                  </div>
+                                                </section>
+                                            </td>
+                                            <td >
+                                                <div style="display: inline-block; text-align: center;">
+                                                    <a style="color: #2A3F54;padding: 3px;">
+                                                        <i class="fa fa-pencil fa-2x" style="padding: 3px;"></i> </a>
+                                                    <a style="color: #2A3F54;">
+                                                        <i class="fa fa-save fa-2x" style="padding: 3px;"></i>  </a>
+                                                    <a style="color: #2A3F54;">
+                                                        <i class="fa fa-trash fa-2x" style="padding: 3px;"></i>  </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                                      <!-- Smart Wizard -->
+                                            <!-- Circles which indicates the steps of the form: -->
+
+
+
+
+                </div>
+              <!-- End SmartWizard Content -->
+            </div>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super}}
+  <!-- jQuery Smart Wizard -->
+  <script src="/static/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+
+  <script src="/static/vendors/jszip/dist/jszip.min.js"></script>
+  <script src="/static/vendors/pdfmake/build/pdfmake.min.js"></script>
+  <script src="/static/vendors/pdfmake/build/vfs_fonts.js"></script>
+
+
+
+{% endblock javascripts %}
+{% block jq%}
+    <script src="/static/build/js/custom_settings.js"></script>
+    <script src="/static/build/js/custom_value_lists_and_ranges.js"></script>
+    <script src="/static/build/js/custom_add_new.js"></script>
+
+
+
+
+    <script src="/static/build/js/custom_elaborations.js"></script>
+    <script src="/static/vendors/Chart.js/dist/Chart.min.js"></script>
+
+
+     <script type="text/javascript" language="javascript" class="init">
+
+
+
+
+
+     </script>
+
+{% endblock jq %}

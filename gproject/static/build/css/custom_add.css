@@ -14,7 +14,7 @@ input.invalid {
 .step {
   height: 0px;
   width: 0px;
-  margin: 0 80px;
+  margin: 0 50px;
   background-color: #ffffff;
   border: #ffffff;
   border-radius: 50%;
@@ -40,7 +40,7 @@ input.invalid {
 
 #div_group_button{
   padding: 5px;
-  border: 1px solid ;
+  /*border: 1px solid ;*/
   margin-top: 5px;
   margin-bottom: 5px;
   align-items: center;
@@ -120,16 +120,8 @@ input.invalid {
 .modal-step{
 
 }
-/*thead{*/
-/*    display:block;*/
-/*}*/
 
-/*tbody{*/
-/*  display:block;*/
-/*  height:400px;*/
-/*  overflow:auto;*/
-/*  width:100%;*/
-/*}*/
+
 div#table {
   display: inline-block;
   height: 400px;
@@ -139,7 +131,14 @@ div#table {
 div#table_results{
   display: inline-block;
   height: 300px;
+  width: -webkit-fill-available;
 
+}
+
+div#table-settings{
+  display: inline-block;
+  height: 500px;
+  width: -webkit-fill-available;
 }
 
 table th {
@@ -155,4 +154,78 @@ table th {
 table td{
   border-right: 1px dotted lightgrey;
   vertical-align: middle !important;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.w3-table td, .w3-table th {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.test-align-center{
+  text-align: center;
 }

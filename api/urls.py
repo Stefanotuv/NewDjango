@@ -4,7 +4,7 @@ from django.conf.urls import url
 from django.urls import path
 from api import views
 
-from .views import ElaborationListAPIView, ElaborationCreateAPIView, ElaborationGetDataFromFile
+from .views import ElaborationListAPIView, ElaborationCreateAPIView, ElaborationGetDataFromFile, ElaborationSettingsAPIView
     # , TableColumnsAPIView
 
 urlpatterns = [
@@ -15,7 +15,11 @@ urlpatterns = [
     # post data
     path('elaborations/add', ElaborationCreateAPIView.as_view(),name='elaborations-add'),
 
-    # get data
+    # get data - not in use
     path('elaborations/file/<filename>',ElaborationGetDataFromFile.as_view(),name='elaboration-data'),
+
+    # read the json setting file for the user
+    path('elaborations/settings/<username>',ElaborationSettingsAPIView.as_view(),name='elaboration-settings'),
+
 
 ]

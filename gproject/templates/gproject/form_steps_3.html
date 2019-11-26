@@ -1,0 +1,306 @@
+{% load static %}
+
+<div id="step-3" class="tab">
+    <!-- overview widget -->
+    <div class="x_content">
+        <div class="row tile_count">
+                  <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count test-align-center">
+                    <span class="count_top"><i class="fa fa-users"></i> Total Students </span>
+                    <div class="count">XXXX</div>
+                  </div>
+                  <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count test-align-center">
+                    <span class="count_top"><i class="fa fa-venus-mars"></i> Gender Split</span>
+                    <div class="count"> ZZ / ZZ </div>
+                    <span class="count_bottom"> Male vs Female</span>
+                  </div>
+                  <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count test-align-center">
+                    <span class="count_top"><i class="fa fa-flag"></i> Number of Countries</span>
+                    <div class="count green">QQQQ</div>
+                  </div>
+                  <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count test-align-center">
+                    <span class="count_top"><i class="fa fa-user"></i> Gmat Average / Median</span>
+                    <div class="count">640 / 680</div>
+                  </div>
+        </div>
+        <div class="row tile_count">
+                  <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count test-align-center">
+                    <span class="count_top"><i class="fa fa-balance-scale"></i> Average Age </span>
+                    <div class="count">XXXX</div>
+                      <span class="count_bottom"> years</span>
+                  </div>
+                  <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count test-align-center">
+                    <span class="count_top"><i class="fa fa-briefcase"></i> Average Experience</span>
+                    <div class="count"> ZZ / ZZ </div>
+                    <span class="count_bottom"> years</span>
+                  </div>
+                  <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count test-align-center">
+                    <span class="count_top"><i class="fa fa-building"></i> Number of Companies</span>
+                    <div class="count green">QQQQ</div>
+                  </div>
+                  <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count test-align-center">
+                    <span class="count_top"><i class="fa fa-rocket"></i> Number of Job Functions / Median</span>
+                    <div class="count">640 / 680</div>
+                  </div>
+
+        </div>
+    </div>
+
+    <!-- world map widget -->
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2># of People per Country</h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+              <div id="echart_world_map_elaborations" style="height:370px;"></div>
+
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- gmat distribution  -->
+
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>Visitors location <small>geo-presentation</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">Settings 1</a>
+                      </li>
+                      <li><a href="#">Settings 2</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <div class="dashboard-widget-content">
+                  <div class="col-md-4 hidden-small">
+                    <h2 class="line_30">125.7k Views from 60 countries</h2>
+
+                    <table class="countries_list">
+                      <tbody>
+                        <tr>
+                          <td>United States</td>
+                          <td class="fs15 fw700 text-right">33%</td>
+                        </tr>
+                        <tr>
+                          <td>France</td>
+                          <td class="fs15 fw700 text-right">27%</td>
+                        </tr>
+                        <tr>
+                          <td>Germany</td>
+                          <td class="fs15 fw700 text-right">16%</td>
+                        </tr>
+                        <tr>
+                          <td>Spain</td>
+                          <td class="fs15 fw700 text-right">11%</td>
+                        </tr>
+                        <tr>
+                          <td>Britain</td>
+                          <td class="fs15 fw700 text-right">10%</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div id="world-map-gdp" class="col-md-8 col-sm-12 col-xs-12" style="height:230px;"></div>
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+     <div class="col-md-12 col-sm-12 col-xs-12" id="div_group_button" style="">
+
+        <div class="col-md-4 col-sm-4 col-xs-12" align="center">
+
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-xs-12" align="center">
+
+
+
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-xs-12" align="center">
+            <div class="btn-group" >
+
+                <button id="prevButton" class="btn btn-info" onclick="init_charts()" >
+         Confirm Changes
+      </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="x_panel">
+  <div class="x_title">
+    <h2> Gmat Distribution </h2>
+    <ul class="nav navbar-right panel_toolbox">
+      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+      </li>
+      <li><a class="close-link"><i class="fa fa-close"></i></a>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+    <div class="demo-container" style="height:250px">
+      <div id="chart_plot_gmat_1" class="demo-placeholder"></div>
+    </div>
+  </div>
+</div>
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Bar graph <small>Sessions</small></h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Settings 1</a>
+                    </li>
+                    <li><a href="#">Settings 2</a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              <canvas id="mybarChart-elaborations-countries"></canvas>
+            </div>
+          </div>
+        </div>
+
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12" id="div_group_button" style="">
+
+        <div class="col-md-4 col-sm-4 col-xs-12" align="center">
+
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-xs-12" align="center">
+
+
+
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-xs-12" align="center">
+            <div class="btn-group" >
+
+                <button id="prevButton" class="btn btn-info" onclick="init_charts()" >
+         Confirm Changes
+      </button>
+
+            </div>
+
+        </div>
+
+    </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Donut Graph <small>Sessions</small></h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Settings 1</a>
+                    </li>
+                    <li><a href="#">Settings 2</a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              <canvas id="canvasDoughnut"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Donut Graph <small>Sessions</small></h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Settings 1</a>
+                    </li>
+                    <li><a href="#">Settings 2</a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              <canvas id="canvasDoughnut"></canvas>
+            </div>
+          </div>
+        </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2> Gmat Distribution </h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <div class="demo-container" style="height:250px">
+                  <div id="chart_plot_gmat_2" class="demo-placeholder"></div>
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+
+
+</div>

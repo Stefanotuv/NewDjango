@@ -1,0 +1,65 @@
+{% load static %}
+
+<div id="step-1" class="tab">
+                <div style="overflow:auto;">
+                <div style="float:left;">
+
+                     <div class="btn-group" style="margin-top: 5px; ">
+
+                        <a href="{% static 'template_grouping.xlsx' %}">
+                           <i class="fa fa-download" style="font-size:20px;">
+
+                           </i>
+
+                            <h5 style="display: inline-block;">Download Template </h5>
+
+                        </a>
+
+                    </div>
+                </div>
+                <div style="float:right;">
+                    <div class="btn-group" >
+                      <a href="#" onclick="post_data({{ user.pk }})">
+
+                          <h5 style="display: inline-block;">Upload your file </h5>
+
+                          <i id="btn_upload" class="fa fa-upload" style="font-size:20px;">
+
+                          </i>
+
+                      </a>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        <!-- -->
+                <form class="form-horizontal form-label-left" >
+
+                <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> Name <span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="id_name" required="required" class="form-control col-md-7 col-xs-12">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Description <span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="id_decription" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Upload File</label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input id="id_document_input" class="form-control col-md-7 col-xs-12" type="file" name="middle-name" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                  </div>
+                </div>
+
+
+              </form>
+
+            </div>

@@ -9,8 +9,8 @@ from django.http import JsonResponse
 from rest_framework.parsers import MultiPartParser, FormParser, FileUploadParser, JSONParser
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.mixins import LoginRequiredMixin
+from rest_framework.views import APIView
 
 from NewDjango.settings import MEDIA_ROOT, MEDIA_URL
 # Create your views here.
@@ -109,8 +109,14 @@ class ElaborationCreateAPIView(LoginRequiredMixin,generics.CreateAPIView):
         except:
             print("Error: File Format issues")
 
+@method_decorator(login_required, name='dispatch')
+class ElaborationSettingsAPIView(LoginRequiredMixin,APIView):
+    permission_classes = ()
+    def get(self, request, *args, **kwargs):
+        temp = 1;
+        return self.list(request, *args, **kwargs)
 
-
+    # TODO: to be done
 
 
 

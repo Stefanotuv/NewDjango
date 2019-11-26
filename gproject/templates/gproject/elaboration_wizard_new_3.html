@@ -81,13 +81,15 @@
                   </ul>
                   <div class="clearfix"></div>
                 </div>
-                <div class="x_content">
+                <div class="x_content" style="text-align: center">
 
 
                                       <!-- Smart Wizard -->
                                             <!-- Circles which indicates the steps of the form: -->
-                    <div style="display: inline-block;margin-bottom: 4px;">
-                      Input data have been reviewed for consistency. Please review the errors and warning below and make the required changes
+                    <div style="display: inline-block;text-align: center; margin-bottom: 4px;">
+                      Input data have been reviewed for consistency. Error for missing columns require to change the input file
+                        please download the file <a style="color: red" href="{% static 'template_grouping.xlsx' %}"> here </a>, make the required changes and re-upload.
+                        Warning can be reviewed and modified directly on the table by selecting the row and double-click
                     </div>
 
 
@@ -100,7 +102,7 @@
                                             <th> Type </th>  <!-- warning vs error -->
                                             <th> Row/ Column</th>
                                             <th> Issues </th>
-                                            <th> Remediation </th>
+                                            <th  style="width: 30%;"> Remediation </th>
                                         </thead>
                                         <tbody id="table_results_body">
 
@@ -236,13 +238,13 @@
                                 <div class="col-md-4 col-sm-4 col-xs-12" align="center">
                                     <div class="btn-group" >
 
-                              <button id="prevButton" class="btn btn-info" onclick="" >
-                                 Confirm Changes
-                              </button>
+                                      <button id="prevButton" class="btn btn-info" onclick="stats('Nationality','list')" >
+                                         Confirm Changes
+                                      </button>
 
-                            </div>
+                                    </div>
 
-                            </div>
+                                </div>
 
                             </div>
 
@@ -263,8 +265,174 @@
                         </div>
 
                         <div id="step-3" class="tab">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                  <div class="x_panel">
+                                    <div class="x_title">
+                                      <h2>World Map</h2>
+                                      <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                      </ul>
+                                      <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <div class="row tile_count">
+                                                  <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count test-align-center">
+                                                    <span class="count_top"><i class="fa fa-user"></i> Total Students </span>
+                                                    <div class="count">XXXX</div>
+                                                    <span class="count_bottom"><i class="green"> Y% </i> XXXX </span>
+                                                  </div>
+                                                  <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count test-align-center">
+                                                    <span class="count_top"><i class="fa fa-clock-o"></i> Gender: Female</span>
+                                                    <div class="count"> ZZZZ </div>
+                                                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+                                                  </div>
+                                                  <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count test-align-center">
+                                                    <span class="count_top"><i class="fa fa-user"></i> Gender: Female</span>
+                                                    <div class="count green">QQQQ</div>
+                                                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+                                                  </div>
+                                                  <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count test-align-center">
+                                                    <span class="count_top"><i class="fa fa-user"></i> Gmat Average </span>
+                                                    <div class="count">4,567</div>
+                                                    <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+                                                  </div>
+                                            </div>
+                                        <div class="row tile_count">
+          <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count test-align-center">
+            <span class="count_top"><i class="fa fa-user"></i> Total Students </span>
+            <div class="count">XXXX</div>
+            <span class="count_bottom"><i class="green"> Y% </i> XXXX </span>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count test-align-center">
+            <span class="count_top"><i class="fa fa-clock-o"></i> Gender: Female</span>
+            <div class="count"> ZZZZ </div>
+            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count test-align-center">
+            <span class="count_top"><i class="fa fa-user"></i> Gender: Female</span>
+            <div class="count green">QQQQ</div>
+            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count test-align-center">
+            <span class="count_top"><i class="fa fa-user"></i> Gmat Average </span>
+            <div class="count">4,567</div>
+            <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+          </div>
+    </div>
 
-                             <div class="row">
+
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                  <div class="x_panel">
+                                    <div class="x_title">
+                                      <h2>World Map</h2>
+                                      <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+
+                                      </ul>
+                                      <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+
+                                      <div id="echart_world_map_elaborations" style="height:370px;"></div>
+
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                  <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="x_panel">
+                                          <div class="x_title">
+                                            <h2>Visitors location <small>geo-presentation</small></h2>
+                                            <ul class="nav navbar-right panel_toolbox">
+                                              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                              </li>
+                                              <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                                <ul class="dropdown-menu" role="menu">
+                                                  <li><a href="#">Settings 1</a>
+                                                  </li>
+                                                  <li><a href="#">Settings 2</a>
+                                                  </li>
+                                                </ul>
+                                              </li>
+                                              <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                              </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                          </div>
+                                          <div class="x_content">
+                                            <div class="dashboard-widget-content">
+                                              <div class="col-md-4 hidden-small">
+                                                <h2 class="line_30">125.7k Views from 60 countries</h2>
+
+                                                <table class="countries_list">
+                                                  <tbody>
+                                                    <tr>
+                                                      <td>United States</td>
+                                                      <td class="fs15 fw700 text-right">33%</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>France</td>
+                                                      <td class="fs15 fw700 text-right">27%</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>Germany</td>
+                                                      <td class="fs15 fw700 text-right">16%</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>Spain</td>
+                                                      <td class="fs15 fw700 text-right">11%</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>Britain</td>
+                                                      <td class="fs15 fw700 text-right">10%</td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                              </div>
+                                              <div id="world-map-gdp" class="col-md-8 col-sm-12 col-xs-12" style="height:230px;"></div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                            </div>
+                            <div class="row">
+
+                                 <div class="col-md-12 col-sm-12 col-xs-12" id="div_group_button" style="">
+
+                                <div class="col-md-4 col-sm-4 col-xs-12" align="center">
+
+                                </div>
+
+                                <div class="col-md-4 col-sm-4 col-xs-12" align="center">
+
+
+
+                                </div>
+
+                                <div class="col-md-4 col-sm-4 col-xs-12" align="center">
+                                    <div class="btn-group" >
+
+                              <button id="prevButton" class="btn btn-info" onclick="init_charts()" >
+                                 Confirm Changes
+                              </button>
+
+                            </div>
+
+                            </div>
+
+                            </div>
+
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                   <div class="x_panel">
                                     <div class="x_title">
@@ -309,11 +477,12 @@
                                       <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
-                                      <canvas id="mybarChart"></canvas>
+                                      <canvas id="mybarChart-elaborations"></canvas>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
+
+                             </div>
 
                           <p>
                           </p>
@@ -380,14 +549,41 @@
 
 {% endblock javascripts %}
 {% block jq%}
+      <!-- ECharts -->
+      <script src="/static/vendors/echarts/dist/echarts.js"></script>
+      <script src="/static/vendors/echarts/map/js/world.js"></script>
 
     <script src="/static/build/js/custom_value_lists_and_ranges.js"></script>
     <script src="/static/build/js/custom_add_new.js"></script>
 
-
-
+    <script src="/static/build/js/custom_elaborations_stats.js"></script>
     <script src="/static/build/js/custom_elaborations.js"></script>
+    <script src="/static/build/js/custom_elaborations_charts.js"></script>
     <script src="/static/vendors/Chart.js/dist/Chart.min.js"></script>
+
+  <!-- gauge.js -->
+  <script src="/static/vendors/gauge.js/dist/gauge.min.js"></script>
+  <!-- Skycons -->
+  <script src="/static/vendors/skycons/skycons.js"></script>
+  <!-- Flot -->
+  <script src="/static/vendors/Flot/jquery.flot.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.pie.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.time.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.stack.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.resize.js"></script>
+  <!-- Flot plugins -->
+  <script src="/static/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+  <script src="/static/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+  <script src="/static/vendors/flot.curvedlines/curvedLines.js"></script>
+  <!-- DateJS -->
+  <script src="/static/vendors/DateJS/build/date.js"></script>
+  <!-- JQVMap -->
+  <script src="/static/vendors/jqvmap/dist/jquery.vmap.js"></script>
+  <script src="/static/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+  <script src="/static/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+
+
+
 
 
      <script type="text/javascript" language="javascript" class="init">

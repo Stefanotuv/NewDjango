@@ -1,0 +1,102 @@
+{% extends "gproject/base_site.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %} Elaborations Summary {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+  <link href="/static/vendors/w3.css" rel="stylesheet" >
+  <link href="/static/build/css/custom.css" rel="stylesheet">
+  <link href="/static/build/css/custom_add.css" rel="stylesheet">
+  <link href="/static/build/css/custom_table.css" rel="stylesheet">
+
+{% endblock stylesheets %}
+
+{% block content %}
+  <div class="right_col" role="main">
+    <div class="">
+      <div class="page-title">
+
+      </div>
+      <div class="clearfix"></div>
+
+      <div class="row">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+            <!----step_wizard starts here--->
+            {% include "gproject/step_wizard.html" %}
+            <!----step_wizard ends here--->
+
+            <!----form_data_check starts here--->
+            {% include "gproject/form_data_check.html" %}
+            <!----form_data_check ends here--->
+
+            <!----form_steps starts here--->
+            {% include "gproject/form_steps.html" %}
+            <!----form_steps ends here--->
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!----modal starts here--->
+    {% include "gproject/modal.html" %}
+  <!--Modal ends here--->
+
+
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super}}
+  <!-- jQuery Smart Wizard -->
+    <script src="/static/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+
+    <script src="/static/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="/static/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="/static/vendors/pdfmake/build/vfs_fonts.js"></script>
+
+
+
+{% endblock javascripts %}
+{% block jq%}
+      <!-- ECharts -->
+    <script src="/static/vendors/echarts/dist/echarts.js"></script>
+    <script src="/static/vendors/echarts/map/js/world.js"></script>
+    <script src="/static/build/js/custom_value_lists_and_ranges.js"></script>
+    <script src="/static/build/js/custom_add_new.js"></script>
+
+    <script src="/static/build/js/custom_elaborations_stats.js"></script>
+    <script src="/static/build/js/custom_elaborations.js"></script>
+    <script src="/static/build/js/custom_elaborations_charts.js"></script>
+    <script src="/static/vendors/Chart.js/dist/Chart.min.js"></script>
+
+    <!-- gauge.js -->
+    <script src="/static/vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- Skycons -->
+    <script src="/static/vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="/static/vendors/Flot/jquery.flot.js"></script>
+    <script src="/static/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="/static/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="/static/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="/static/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="/static/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="/static/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="/static/vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="/static/vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="/static/vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="/static/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="/static/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+
+    <script type="text/javascript" language="javascript" class="init">
+
+    </script>
+
+{% endblock jq %}

@@ -8,3 +8,22 @@
 
 - add visualisation on table from excel to manipulate
 - understand what to save
+
+
+- add "saving changes"
+  the scope is to save the data that have been modified in the modal and posted to the table
+
+- add save the json file post elaboration (to be understood how to retrieve the json if changes
+are made
+
+- add setting page
+
+--------------------------------------------------------------------
+
+
+TODO: add edit/save/delete to the settings page
+TODO: add API to read the settings from file
+TODO: review the page with the errors/ wanring to point directly to the modal
+TODO: add the suggested values to the modal
+TODO: create the lists for the values
+

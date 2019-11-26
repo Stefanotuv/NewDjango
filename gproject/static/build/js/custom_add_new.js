@@ -12,27 +12,30 @@ function showTab(n) {
   // This function will display the specified tab of the form ...
   "use strict";
   var  x = document.getElementsByClassName("tab");
-  x[n].style.display = "block";
-  // ... and fix the Previous/Next buttons:
-  if (n === 0) {
-    document.getElementById("prevButton").style.display = "none";
-    if (submitted === false){
-        document.getElementById("nextButton").disabled = true;
+  debugger;
+    if(x.length !== 0){
+      x[n].style.display = "block";
+      // ... and fix the Previous/Next buttons:
+      if (n === 0) {
+        document.getElementById("prevButton").disabled = true;
+        if (submitted === false){
+            document.getElementById("nextButton").disabled = true;
+        }
+
+      } else {
+        document.getElementById("prevButton").disabled = false;
+
+      }
+      if (n === (x.length - 1)) {
+        document.getElementById("nextButton").innerHTML = "Submit";
+
+      } else {
+        document.getElementById("nextButton").innerHTML = "Next >>";
+
+      }
+      // ... and run a function that displays the correct step indicator:
+      fixStepIndicator(n);
     }
-
-  } else {
-    document.getElementById("prevButton").style.display = "inline";
-
-  }
-  if (n === (x.length - 1)) {
-    document.getElementById("nextButton").innerHTML = "Submit";
-
-  } else {
-    document.getElementById("nextButton").innerHTML = "Next";
-
-  }
-  // ... and run a function that displays the correct step indicator:
-  fixStepIndicator(n);
 }
 
 function nextPrev(n) {
@@ -254,7 +257,7 @@ function create_body_and_modal(data, table_body_id){
                     this.style.border = '1px solid #01d28e';
                     button_modal_submit.disabled = false;
 
-                    // on change save the entire record and save in a list/array
+                    // on change save the entire record and save in a dictionary
                     var div_step_changed = this.parentNode.parentElement;
                     var rec_numbers = div_step_changed.getElementsByClassName("control-label").length;
                     var div_step_labels = div_step_changed.getElementsByClassName("control-label");
@@ -276,6 +279,7 @@ function create_body_and_modal(data, table_body_id){
                 div_step.append(form_group);
 
                 // double click event on each cell of the main table to open the modal in the current record
+                // TODO: the ondblclick can be moved to be part of the row rather then the individual cells
                 td.ondblclick = function(){
                     var rowId = this.parentNode.rowIndex;
                     record_num.innerText = rowId -1 ;
@@ -312,6 +316,7 @@ function create_body_and_modal(data, table_body_id){
 
 }
 
+
 function modal_next_prev(n){
     "use strict"
     var record_num = parseInt(document.getElementById("record_num").innerText);
@@ -319,7 +324,7 @@ function modal_next_prev(n){
     document.getElementById("modal-step-"+ record_num).style.display = "none";
     if((record_num + n) === -1){
         document.getElementById("modal-step-"+ (total_records -1)).style.display = "block";
-        document.getElementById("record_num").innerText = (total_records -1);
+        document.getElementById("record_num").innerText = (total_records -1 );
     } else if((record_num + n) === total_records){
         document.getElementById("modal-step-"+ 0).style.display = "block";
         document.getElementById("record_num").innerText = 0;
@@ -339,14 +344,11 @@ function submit_change_table() {
         for (var key_key in record_changed_dict[key]){
             document.getElementById(("id-col-" + key_key + "-" + parseInt(key))).innerHTML =
                 record_changed_dict[key][key_key];
-
         }
-
     }
-
-
 }
 
+//
 function run_checks(){
     "use strict"
     debugger;
@@ -357,3 +359,14 @@ function run_checks(){
     issues_summary(headers_check,rows_checks);
     document.getElementById("x_panel_elaboration").style.display = "inline-block";
 }
+
+// save the changes from the modal and posted to the table in the global variable
+// if not saved the global variable will keep the records pre-changes in the modal
+function confirm_changes(){
+    "use strict"
+    //current_data_set; // contains all the records
+
+    //record_changed_dict; // contains the records changed with the modal
+
+}
+
