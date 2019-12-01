@@ -1,6 +1,8 @@
-from .serialiser import ElaborationSerialiser
-from gproject.models import Elaboration
-from rest_framework import generics
+from .serialiser import ElaborationSerialiser, ElaborationSettingsSerialiser
+from .serialiser import ListDBSerialiser
+from gproject.models import Elaboration, ElaborationSettings, ListDB, ListValuesDB
+from rest_framework import generics, permissions, authentication
+# from rest_framework_jwt import authentication
 from gproject.forms import ElaborationCreateForm
 from NewDjango.settings import GROUPING_COLUMNS
 import pandas, json
@@ -11,6 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework.views import APIView
+from rest_framework.response import Response
 
 from NewDjango.settings import MEDIA_ROOT, MEDIA_URL
 # Create your views here.
@@ -33,6 +36,20 @@ def tableColumnsAPIView(request):
 # ,generics.base.CreateModelMixin):
 
 @method_decorator(login_required, name='dispatch')
+class ElaborationListColAPIView(LoginRequiredMixin, generics.ListAPIView):
+    lookup_field = 'pk'
+    queryset = Elaboration.objects.all()
+    serializer_class = ElaborationSerialiser
+    columns = serializer_class.Meta.fields
+    permission_classes = ()
+    ordering = ['-date_created']
+
+    def get(self, request, *args, **kwargs):
+        item = 0
+        return Response(self.columns)
+        # super(ElaborationListColAPIView, self).get(request, *args, **kwargs);
+
+@method_decorator(login_required, name='dispatch')
 class ElaborationGetDataFromFile(LoginRequiredMixin,generics.GenericAPIView):
     # use to elaborate the json file to be passed to the table
 
@@ -41,7 +58,9 @@ class ElaborationGetDataFromFile(LoginRequiredMixin,generics.GenericAPIView):
 
         pass
 
-
+# post the user, desription and file excel to the DB and
+# convert the file in json with the same name and save it in the
+# same directory
 @method_decorator(login_required, name='dispatch')
 class ElaborationCreateAPIView(LoginRequiredMixin,generics.CreateAPIView):
     lookup_field = 'pk'
@@ -110,13 +129,42 @@ class ElaborationCreateAPIView(LoginRequiredMixin,generics.CreateAPIView):
             print("Error: File Format issues")
 
 @method_decorator(login_required, name='dispatch')
-class ElaborationSettingsAPIView(LoginRequiredMixin,APIView):
+class ElaborationSettingsAPIView(LoginRequiredMixin,generics.ListAPIView):
+    lookup_field = 'pk'
+    queryset = ElaborationSettings.objects.all()
+    serializer_class = ElaborationSettingsSerialiser
+    authentication_classes = [authentication.SessionAuthentication,authentication.TokenAuthentication,]
+    permission_classes = [permissions.IsAuthenticated,permissions.IsAdminUser]
+
+
+@method_decorator(login_required, name='dispatch')
+class ListDBAPIView(LoginRequiredMixin,generics.ListAPIView):
+    lookup_field = 'pk'
+    queryset = ListDB.objects.all()
+    serializer_class = ListDBSerialiser
     permission_classes = ()
-    def get(self, request, *args, **kwargs):
-        temp = 1;
-        return self.list(request, *args, **kwargs)
 
-    # TODO: to be done
+# this view returns the user in the url (using user number)
 
+# @method_decorator(login_required, name='dispatch')
+# class ElaborationSettingsByUserAPIView(LoginRequiredMixin,generics.ListAPIView):
+#     lookup_field = 'pk'
+#     serializer_class = ElaborationSettingsSerialiser
+#     permission_classes = ()
+#     def get_queryset(self):
+#         user = self.kwargs['username']
+#         return ElaborationSettings.objects.filter(user=user)
 
+# TODO: create the authentication and permission
 
+@method_decorator(login_required, name='dispatch')
+class ElaborationSettingsByUserAPIView(LoginRequiredMixin,generics.ListAPIView):
+    lookup_field = 'pk'
+    queryset = ElaborationSettings.objects.all()
+    serializer_class = ElaborationSettingsSerialiser
+    authentication_classes = [authentication.SessionAuthentication,authentication.TokenAuthentication,]
+    permission_classes = [permissions.IsAuthenticated,]
+    def get_queryset(self):
+        # user = self.kwargs['username']
+        user = self.request.user
+        return ElaborationSettings.objects.filter(user=user)

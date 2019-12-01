@@ -1,0 +1,44 @@
+{% load static %}
+<div class="x_panel" id="x_panel_elaboration" style="display: none;">
+                <div class="x_title" id="titles">
+                  <h2>Data Review Report</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content" style="text-align: center">
+
+                    <div style="display: inline-block;text-align: center; margin-bottom: 4px;">
+                      Input data have been reviewed for consistency. Error for missing columns require to change the input file
+                        please download the file <a style="color: red" href=" {% static 'template_grouping.xlsx' %}"> here </a>, make the required changes and re-upload.
+                        Warning can be reviewed and modified directly on the table by selecting the row and double-click
+                    </div>
+
+
+                    <div style="overflow:auto;">
+                            <div class="col-md-12 col-sm-12 col-xs-12" style="overflow: auto;">
+                                <div id="table_results" class="table-editable" style="font-size: 10px;">
+
+                                    <table id="table_results" style="font-size: 12px" class="w3-table w3-striped w3-bordered w3-hoverable" style="overflow: auto;">
+                                        <thead id="table_results_head" class="w3-light-grey" valign="center">
+                                            <th style="width: 10%"> Type </th>  <!-- warning vs error -->
+                                            <th style="width: 10%"> Row/ Column</th>
+                                            <th> Issues </th>
+                                            <th  style="width: 30%;"> Remediation </th>
+                                        </thead>
+                                        <tbody id="table_results_body">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+                    </div>
+
+                </div>
+              <!-- End SmartWizard Content -->
+            </div>

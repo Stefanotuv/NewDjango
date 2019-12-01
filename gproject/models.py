@@ -28,5 +28,40 @@ class Elaboration(models.Model):
     def __unicode__(self):
         return self.name
 
+class ListDB(models.Model):
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
+
+
+class ListValuesDB(models.Model):
+    value = models.CharField(max_length=100)
+    list_DB = models.ForeignKey(ListDB, on_delete=models.CASCADE,
+                                       related_name='list_value')
+    def __str__(self):
+        return self.value
+
+
+
+class ElaborationSettings(models.Model):
+    OPTION_VALUE = (
+        ('None','None'),
+        ('List','List'),
+        ('Range','Range'),
+    )
+    name = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_elaboration_settings')
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
+    option_value = models.CharField(max_length=5, default='None', choices=OPTION_VALUE)
+    mandatory = models.BooleanField(default=False)
+    range_from = models.FloatField(null=True,blank=True)
+    range_to = models.FloatField(null=True,blank=True)
+    list_DB = models.ForeignKey(ListDB, on_delete=models.CASCADE, null=True, blank=True, related_name='user_elaboration_settings_list')
+
+
+
+
+
+
 
 

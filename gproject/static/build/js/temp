@@ -1,0 +1,19 @@
+"<div class=\"col-md-12 col-sm-12 col-xs-12\">\n" +
+     "                                               <div class=\"col-md-6 col-sm-6 col-xs-12\">\n" +
+     "                       <select class=\"form-control\">\n" +
+     "                         <option>Choose option</option>\n" +
+    "                        <option>Option one</option>\n" +
+     "                         <option>Option two</option>\n" +
+     "                         <option>Option three</option>\n" +
+     "                         <option>Option four</option>\n" +
+     "                       </select>\n" +
+     "                                               </div>\n" +
+"                       <select class=\"form-control\">\n" +
+     "                         <option>Choose option</option>\n" +
+    "                        <option>Option one</option>\n" +
+     "                         <option>Option two</option>\n" +
+     "                         <option>Option three</option>\n" +
+     "                         <option>Option four</option>\n" +
+     "                       </select>\n" +
+     "                                               </div>\n" +
+      "</div>";

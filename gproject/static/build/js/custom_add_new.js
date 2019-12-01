@@ -18,19 +18,29 @@ function showTab(n) {
       // ... and fix the Previous/Next buttons:
       if (n === 0) {
         document.getElementById("prevButton").disabled = true;
+        document.getElementById("reviewInputDataButton").disabled = true;
+        document.getElementById("confirmChangesButton").disabled = true;
         if (submitted === false){
             document.getElementById("nextButton").disabled = true;
         }
 
-      } else {
+      } else if (n === 1){
+        document.getElementById("reviewInputDataButton").disabled = false;
+        document.getElementById("confirmChangesButton").disabled = true;
         document.getElementById("prevButton").disabled = false;
+      } else if (n === 2){
+        document.getElementById("reviewInputDataButton").disabled = true;
+        document.getElementById("confirmChangesButton").disabled = false;
+        // TODO: make the preButton visible only after confirmChangesButton
+        // TODO: has been pressed. create function onlick for confirmChangesButton
+        document.getElementById("prevButton").disabled = false;
+      } else{}
+          if (n === (x.length - 1)) {
+            document.getElementById("nextButton").innerHTML = "Submit";
 
-      }
-      if (n === (x.length - 1)) {
-        document.getElementById("nextButton").innerHTML = "Submit";
+          } else {
+            document.getElementById("nextButton").innerHTML = "Next >>";
 
-      } else {
-        document.getElementById("nextButton").innerHTML = "Next >>";
 
       }
       // ... and run a function that displays the correct step indicator:

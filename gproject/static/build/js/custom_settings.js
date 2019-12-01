@@ -27,24 +27,27 @@ function add_settings(){
 
 
     var td_4 = document.createElement("td");
-    td_4.innerHTML = "<section class=\"container_dropdown\">\n" +
-        "                                                  <div class=\"dropdown_dd\">\n" +
-        "                                                    <select name=\"one\" class=\"dropdown_dd-select\">\n" +
-        "                                                      <option value=\"\">Select…</option>\n" +
-        "                                                      <option value=\"1\">Option #1</option>\n" +
-        "                                                      <option value=\"2\">Option #2</option>\n" +
-        "                                                      <option value=\"3\">Option #3</option>\n" +
-        "                                                    </select>\n" +
-        "                                                  </div>\n" +
-        "                                                  <div class=\"dropdown_dd\">\n" +
-        "                                                    <select name=\"one\" class=\"dropdown_dd-select\">\n" +
-        "                                                      <option value=\"\">Select…</option>\n" +
-        "                                                      <option value=\"1\">Option #1</option>\n" +
-        "                                                      <option value=\"2\">Option #2</option>\n" +
-        "                                                      <option value=\"3\">Option #3</option>\n" +
-        "                                                    </select>\n" +
-        "                                                  </div>\n" +
-        "                                                </section>"
+    td_4.innerHTML = "<div class=\"\">\n" +
+     "                                               <div class=\"col\">\n" +
+     "                       <select class=\"form-control\">\n" +
+     "                         <option>Choose option</option>\n" +
+    "                        <option>Option one</option>\n" +
+     "                         <option>Option two</option>\n" +
+     "                         <option>Option three</option>\n" +
+     "                         <option>Option four</option>\n" +
+     "                       </select>\n" +
+     "                                               </div>\n" +
+      "  <div class=\"col\">\n" +
+"                       <select class=\"form-control\">\n" +
+     "                         <option>Choose option</option>\n" +
+    "                        <option>Option one</option>\n" +
+     "                         <option>Option two</option>\n" +
+     "                         <option>Option three</option>\n" +
+     "                         <option>Option four</option>\n" +
+     "                       </select>\n" +
+     "                                               </div>\n" +
+      "</div>";
+
 
     tr.appendChild(td_4);
 

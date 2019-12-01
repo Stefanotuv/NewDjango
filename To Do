@@ -19,11 +19,21 @@ are made
 - add setting page
 
 --------------------------------------------------------------------
-
-
-TODO: add edit/save/delete to the settings page
+---- profile page -----
+TODO: review profile page
+TODO: add input field
+TODO: show pics as round
+----- settings ------------
 TODO: add API to read the settings from file
-TODO: review the page with the errors/ wanring to point directly to the modal
+TODO: change the input so that there is no overalap when scrolling the page
+---- issues -----
+TODO: simplify the issues report
+TODO: review the button o launch the review
+TODO: repoint the issues without opening the modal from the rows but from the links of the errors
+----- modal
 TODO: add the suggested values to the modal
 TODO: create the lists for the values
+
+Added the api authorisation and the permission, now only authorised user can log
+ in and questy their stuff
 

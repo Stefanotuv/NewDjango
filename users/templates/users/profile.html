@@ -1,26 +1,66 @@
-{% extends "blog/base.html" %}
+{% extends "gproject/base_site.html" %}
 {% load crispy_forms_tags %}
-{% block bodyblock %}
-    <div class="content-section">
-      <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-        <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }}</p>
-        </div>
-      </div>
-      <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Profile Info</legend>
-{#                {{ form.as_p }}#}
-                {{ u_form|crispy }}
-                {{ p_form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Update</button>
+{% load static %}
+{% block title %} User Profile {% endblock title %}
+{% block stylesheets %}
+  {{ block.super }}
+  <link href="/static/vendors/w3.css" rel="stylesheet" >
+{% endblock stylesheets %}
+{% block content %}
+  <div class="right_col" role="main">
+    <div class="">
+      <div class="page-title">
 
-            </div>
-        </form>
+      </div>
+      <div class="clearfix"></div>
+
+      <div class="row">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            {% include "users/profile-info.html" %}
+
+
+
+
+        </div>
+
+      </div>
+
+       <div class="row">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            {% include "users/profile-tabs.html" %}
+        </div>
+       </div>
     </div>
-{% endblock bodyblock %}
+  </div>
+
+{% endblock content %}
+{% block javascripts %}
+  {{ block.super}}
+{% endblock javascripts %}
+{% block jq%}
+{% endblock jq %}
+
+{#                <div class="content-section">#}
+{#                  <div class="media">#}
+{#                    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">#}
+{#                    <div class="media-body">#}
+{#                      <h2 class="account-heading">{{ user.username }}</h2>#}
+{#                      <p class="text-secondary">{{ user.email }}</p>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                  <form method="POST" enctype="multipart/form-data">#}
+{#                        {% csrf_token %}#}
+{#                        <fieldset class="form-group">#}
+{#                            <legend class="border-bottom mb-4">Profile Info</legend>#}
+            {#                {{ form.as_p }}#}
+{#                            {{ u_form|crispy }}#}
+{#                            {{ p_form|crispy }}#}
+{#                        </fieldset>#}
+{#                        <div class="form-group">#}
+{#                            <button class="btn btn-outline-info" type="submit">Update</button>#}
+{##}
+{#                        </div>#}
+{#                    </form>#}
+{#                </div>#}

@@ -6,7 +6,9 @@ from .views import ElaborationListView, GPHomeView,GPElaborationCreateView
 urlpatterns = [
     # for testing
     path('grouping/', ElaborationListView.as_view(),name='grouping-home-test'),
+
     path('', GPHomeView.as_view(template_name ='gproject/OLD/tables_elaboration_summary.html'), name='gproject-home'),
+
     path('new/', GPHomeView.as_view(template_name = 'gproject/elaboration.html'),name='gproject-new'),
 
     path('GP/new/',GPElaborationCreateView.as_view(template_name = 'gproject/elaboration.html'),
@@ -27,8 +29,17 @@ urlpatterns = [
          name='gproject-gp-wizard-table'),
     path('GP/elaboration_settings',
          GPElaborationCreateView.as_view(template_name='gproject/elaboration_settings.html'),
-         name='gproject-gp-elaboration-settings')
-
+         name='gproject-gp-elaboration-settings'),
+    path('GP/elaboration_settings_2',
+         GPElaborationCreateView.as_view(template_name='gproject/elaboration_settings_2.html'),
+         name='gproject-gp-elaboration-settings-2'),
+    path('GP/elaboration_settings_new',
+         GPElaborationCreateView.as_view(template_name='gproject/elaboration_settings_new.html'),
+         name='gproject-gp-elaboration-settings-new'),
+    path('GP/home/',GPElaborationCreateView.as_view(template_name = 'gproject/home.html'),
+         name='gproject-gp-home'),
+    path('GP/home_new/', GPElaborationCreateView.as_view(template_name='gproject/home_new.html'),
+         name='gproject-gp-home-new'),
     # path('GP/wizard2',GPElaborationCreateView.as_view(template_name = 'gproject/elaboration_wizard_2.html'),
     #          name='gproject-gp-wizard2')
 

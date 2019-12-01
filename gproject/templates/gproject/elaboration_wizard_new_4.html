@@ -29,7 +29,8 @@
             <!----step_wizard ends here--->
 
             <!----form_data_check starts here--->
-            {% include "gproject/form_data_check.html" %}
+{#            {% include "gproject/form_data_check.html" %}#}
+            {% include "gproject/form_data_check_new.html" %}
             <!----form_data_check ends here--->
 
             <!----form_steps starts here--->
@@ -70,7 +71,8 @@
     <script src="/static/build/js/custom_add_new.js"></script>
 
     <script src="/static/build/js/custom_elaborations_stats.js"></script>
-    <script src="/static/build/js/custom_elaborations.js"></script>
+{#    <script src="/static/build/js/custom_elaborations.js"></script>#}
+    <script src="/static/build/js/custom_elaborations_light.js"></script>
     <script src="/static/build/js/custom_elaborations_charts.js"></script>
     <script src="/static/vendors/Chart.js/dist/Chart.min.js"></script>
 
@@ -96,7 +98,9 @@
     <script src="/static/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
 
     <script type="text/javascript" language="javascript" class="init">
-
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
     </script>
 
 {% endblock jq %}
