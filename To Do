@@ -1,3 +1,15 @@
+Reverse the ORDER always
+
+- add the input form for settings
+- add the bank-end query/api
+- add the list value column
+
+
+
+
+
+
+
 - unique email: https://docs.djangoproject.com/en/2.1/topics/auth/customizing/#a-full-example
 - infinite scroll: https://github.com/nitely/django-infinite-scroll-pagination/blob/master/README.md
 

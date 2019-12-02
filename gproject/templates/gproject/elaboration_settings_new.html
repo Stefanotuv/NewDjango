@@ -37,21 +37,39 @@
                 </div>
                 <div class="x_content">
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="col-md-2 col-sm-2 col-xs-12"></div>
-                        <div class="col-md-8 col-sm-8 col-xs-12" STYLE="text-align: center; padding: 10px">
-                              <div >
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12" STYLE="text-align: center; padding: 10px">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="btn-group" >
+
+                                <button id="load" class="btn btn-primary" onclick="read_settings(1)" >
+                                Load Settings
+                                </button>
+
+                                </div>
+                                </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <select class="form-control mid-control">
+                                    <option>Choose option</option>
+                                    <option>Option one</option>
+                                    <option>Option two</option>
+                                    <option>Option three</option>
+                                    <option>Option four</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="btn-group" >
 
                                   <button id="load" class="btn btn-primary" onclick="read_settings(1)" >
-                                     Load Settings
+                                     Save Settings
                                   </button>
 
                                 </div>
-
-
-                              </div>
+                            </div>
                         </div>
-                        <div class="col-md-2 col-sm-2 col-xs-12"></div>
+                        <div class="col-md-3 col-sm-3 col-xs-12"></div>
                     </div>
 
                     <div class="col-md-12 col-sm-12 col-xs-12" style="overflow: auto;text-align: center;">
@@ -59,96 +77,13 @@
 
                             <table id="edit-table-settings" class="w3-table w3-striped w3-bordered w3-hoverable" style="overflow: auto;">
                                 <thead id="edit-table-settings-head" class="w3-light-grey" valign="center">
-{#                                        <tr>#}
-{#                                            <th > # </th>#}
-{#                                            <th> Field Name </th>#}
-{#                                            <th style="width: 15%;text-align: center;"> Required Not Empty </th>#}
-{#                                            <th style="text-align: center;"> List </th>#}
-{#                                            <th style="text-align: center;"> List of Values </th>#}
-{#                                            <th style="text-align: center;"> Range from </th>#}
-{#                                            <th style="text-align: center;"> Range to </th>#}
-{#                                            <th style="text-align: center;">#}
-{##}
-{#                                                <a style="color: white;" onclick="add_settings();"><i class="fa fa-plus-circle"></i> Add field </a>#}
-{##}
-{#                                            </th>#}
-{#                                        </tr>#}
+{#                                added with jscript#}
+
                                 </thead>
                                 <tbody id="edit-table-settings-body" >
-{#                                        <tr>#}
-{#                                            <td> One </td>#}
-{#                                            <td > name </td>#}
-{#                                            <td  style="text-align: center;">#}
-{##}
-{#                                                <div class="checkbox">#}
-{#                                                  <label>#}
-{#                                                    <input type="checkbox" class="" checked="checked" style="margin-right: 10px;"> NOT EMPTY#}
-{#                                                  </label>#}
-{#                                                </div>#}
-{#                                            </td>#}
-{##}
-{#                                            <td >#}
-{##}
-{#                                                        <select class="form-control mid-control">#}
-{#                                                          <option>Choose option</option>#}
-{#                                                          <option>Option one</option>#}
-{#                                                          <option>Option two</option>#}
-{#                                                          <option>Option three</option>#}
-{#                                                          <option>Option four</option>#}
-{#                                                        </select>#}
-{##}
-{##}
-{#                                            </td>#}
-{#                                            <td >#}
-{##}
-{#                                                        <select class="form-control mid-control">#}
-{#                                                          <option>Choose option</option>#}
-{#                                                          <option>Option one</option>#}
-{#                                                          <option>Option two</option>#}
-{#                                                          <option>Option three</option>#}
-{#                                                          <option>Option four</option>#}
-{#                                                        </select>#}
-{##}
-{##}
-{#                                            </td>#}
-{##}
-{#                                            <td >#}
-{##}
-{#                                                        <select class="form-control mid-control">#}
-{#                                                          <option>Choose option</option>#}
-{#                                                          <option>Option one</option>#}
-{#                                                          <option>Option two</option>#}
-{#                                                          <option>Option three</option>#}
-{#                                                          <option>Option four</option>#}
-{#                                                        </select>#}
-{##}
-{##}
-{#                                            </td>#}
-{#                                            <td >#}
-{##}
-{#                                                        <select class="form-control mid-control">#}
-{#                                                          <option>Choose option</option>#}
-{#                                                          <option>Option one</option>#}
-{#                                                          <option>Option two</option>#}
-{#                                                          <option>Option three</option>#}
-{#                                                          <option>Option four</option>#}
-{#                                                        </select>#}
-{##}
-{##}
-{#                                            </td>#}
-{##}
-{#                                            <td style="text-align: center;">#}
-{#                                                <div style="display: inline-block; text-align: center;">#}
-{#                                                    <a style="color: #2A3F54;padding: 3px;">#}
-{#                                                        <i class="fa fa-pencil fa-2x" style="padding: 3px;"></i> </a>#}
-{#                                                    <a style="color: #2A3F54;">#}
-{#                                                        <i class="fa fa-save fa-2x" style="padding: 3px;"></i>  </a>#}
-{#                                                    <a style="color: #2A3F54;">#}
-{#                                                        <i class="fa fa-trash fa-2x" style="padding: 3px;"></i>  </a>#}
-{#                                                </div>#}
-{#                                            </td>#}
-{#                                        </tr>#}
-                                </tbody>
+{#                                added with jscript#}
+
+                              </tbody>
                             </table>
                         </div>
                     </div>

@@ -6,7 +6,8 @@ from api import views
 from django.urls.conf import include
 
 from .views import ElaborationListAPIView, ElaborationCreateAPIView, ElaborationGetDataFromFile, \
-    ElaborationSettingsAPIView, ElaborationListColAPIView, ListDBAPIView, ElaborationSettingsByUserAPIView
+    ElaborationSettingsAPIView, ElaborationListColAPIView, ListDBAPIView, \
+    ElaborationSettingsByUserAPIView, ListDBByUserAPIView
     # , TableColumnsAPIView
 
 urlpatterns = [
@@ -35,6 +36,11 @@ urlpatterns = [
 
     # read the json setting file for the user
     path('elaborations/settings-lists', ListDBAPIView.as_view(), name='elaboration-settings-lists'),
+
+    # read the json setting file for the user
+    path('elaborations/settings-lists/user', ListDBByUserAPIView.as_view(), name='elaboration-settings-lists-user'),
+
+
 
     # read the json setting file for the user
     path('auth',include('rest_framework.urls')),

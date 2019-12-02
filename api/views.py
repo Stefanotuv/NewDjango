@@ -22,11 +22,18 @@ from NewDjango.settings import MEDIA_ROOT, MEDIA_URL
 @method_decorator(login_required, name='dispatch')
 class ElaborationListAPIView(LoginRequiredMixin, generics.ListAPIView):
     lookup_field = 'pk'
-    queryset = Elaboration.objects.all()
     serializer_class = ElaborationSerialiser
     columns = serializer_class.Meta.fields
-    permission_classes = ()
     ordering = ['-date_created']
+    authentication_classes = [authentication.SessionAuthentication,authentication.TokenAuthentication,]
+    permission_classes = [permissions.IsAuthenticated,]
+    def get_queryset(self):
+        # user = self.kwargs['username']
+        user = self.request.user
+        if user.is_superuser:
+            return Elaboration.objects.filter()
+        else:
+            return Elaboration.objects.filter(user=user)
 
 def tableColumnsAPIView(request):
     temp = getattr(sys.modules[__name__], 'ElaborationSerialiser')
@@ -35,6 +42,7 @@ def tableColumnsAPIView(request):
     return  JsonResponse(context)
 # ,generics.base.CreateModelMixin):
 
+# return the cloun of the elaboration
 @method_decorator(login_required, name='dispatch')
 class ElaborationListColAPIView(LoginRequiredMixin, generics.ListAPIView):
     lookup_field = 'pk'
@@ -49,6 +57,7 @@ class ElaborationListColAPIView(LoginRequiredMixin, generics.ListAPIView):
         return Response(self.columns)
         # super(ElaborationListColAPIView, self).get(request, *args, **kwargs);
 
+# to be build to load file - low priority
 @method_decorator(login_required, name='dispatch')
 class ElaborationGetDataFromFile(LoginRequiredMixin,generics.GenericAPIView):
     # use to elaborate the json file to be passed to the table
@@ -142,7 +151,24 @@ class ListDBAPIView(LoginRequiredMixin,generics.ListAPIView):
     lookup_field = 'pk'
     queryset = ListDB.objects.all()
     serializer_class = ListDBSerialiser
-    permission_classes = ()
+    authentication_classes = [authentication.SessionAuthentication, authentication.TokenAuthentication, ]
+    permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
+
+
+@method_decorator(login_required, name='dispatch')
+class ListDBByUserAPIView(LoginRequiredMixin,generics.ListAPIView):
+    lookup_field = 'pk'
+    serializer_class = ListDBSerialiser
+    authentication_classes = [authentication.SessionAuthentication, authentication.TokenAuthentication, ]
+    permission_classes = [permissions.IsAuthenticated, ]
+    def get_queryset(self):
+        # user = self.kwargs['username']
+        user = self.request.user
+        if user.is_superuser:
+            return ListDB.objects.filter()
+        else:
+            return ListDB.objects.filter()
+
 
 # this view returns the user in the url (using user number)
 
@@ -167,4 +193,7 @@ class ElaborationSettingsByUserAPIView(LoginRequiredMixin,generics.ListAPIView):
     def get_queryset(self):
         # user = self.kwargs['username']
         user = self.request.user
-        return ElaborationSettings.objects.filter(user=user)
+        if user.is_superuser:
+            return ElaborationSettings.objects.filter()
+        else:
+            return ElaborationSettings.objects.filter(user=user)
