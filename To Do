@@ -1,4 +1,9 @@
 Reverse the ORDER always
+- add pagination
+- review the redirection from the login
+- change the log-out page
+
+
 
 - add the input form for settings
 - add the bank-end query/api

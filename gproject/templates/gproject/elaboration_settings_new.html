@@ -36,11 +36,14 @@
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12" STYLE="text-align: center; padding: 10px">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <select id="select_group_elaborations" class=" select-css" onload="read_settings_group()" onselect="">
+                                    <option>Choose Settings List</option>
 
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12" STYLE="text-align: center; padding: 10px">
+                                </select>
+                            </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="btn-group" >
 
@@ -50,26 +53,44 @@
 
                                 </div>
                                 </div>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                <select class="form-control mid-control">
-                                    <option>Choose option</option>
-                                    <option>Option one</option>
-                                    <option>Option two</option>
-                                    <option>Option three</option>
-                                    <option>Option four</option>
-                                </select>
-                            </div>
+
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="btn-group" >
 
-                                  <button id="load" class="btn btn-primary" onclick="read_settings(1)" >
+                                  <button id="load" class="btn btn-primary" onclick="" >
                                      Save Settings
                                   </button>
 
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12"></div>
+                        <div class="col-md-3 col-sm-3 col-xs-12" STYLE="text-align: center; padding: 10px">
+
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+
+                            <div class="btn-group" style="text-align: right" >
+
+                                  <button id="load" class="btn btn-success" onclick="add_settings()" >
+                                     <i class="fa fa-plus-circle" > </i> Add Settings
+                                  </button>
+                            </div>
+                            <div class="btn-group" style="text-align: right" >
+
+                                  <button id="load" class="btn btn-success" onclick="" >
+                                     <i class="fa fa-save" > </i>
+                                  </button>
+
+                            </div>
+
+{#                            <div class="btn-group" >#}
+{#                            <button class="btn btn-success" href="#">#}
+{##}
+{#                                <i class="fa fa-plus-circle" > Add Settings</i>#}
+{#                            </button>#}
+{#                            </div>#}
+
+                        </div>
                     </div>
 
                     <div class="col-md-12 col-sm-12 col-xs-12" style="overflow: auto;text-align: center;">
@@ -132,7 +153,11 @@
 
 
      <script type="text/javascript" language="javascript" class="init">
+        $( document ).ready(function() {
+            console.log( "ready!" );
+            read_settings_group();
 
+        });
 
 
 

@@ -1,0 +1,43 @@
+{% load static %}
+
+<div id="step-1" class="tab">
+
+
+        <!-- -->
+                <form class="form-horizontal form-label-left" >
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> Name <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="id_name_list" required="required" class="form-control col-md-7 col-xs-12">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Upload File</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="id_document_input_list" class="form-control col-md-7 col-xs-12" type="file" name="middle-name" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                      </div>
+                    </div>
+
+
+              </form>
+                <div class="btn-group" >
+                    <a href="#" onclick="post_list({{ user.pk }})">
+
+                      <h5 style="display: inline-block;">Upload your file </h5>
+
+                      <i id="btn_upload" class="fa fa-upload" style="font-size:20px;">
+
+                      </i>
+
+                    </a>
+
+                </div>
+
+
+
+
+</div>

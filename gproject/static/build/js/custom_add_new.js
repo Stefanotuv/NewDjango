@@ -12,7 +12,6 @@ function showTab(n) {
   // This function will display the specified tab of the form ...
   "use strict";
   var  x = document.getElementsByClassName("tab");
-  debugger;
     if(x.length !== 0){
       x[n].style.display = "block";
       // ... and fix the Previous/Next buttons:
@@ -106,7 +105,7 @@ function post_data(user) {
 
         // console.log( 'fileSelect:' );
         // console.log( fileSelect );
-
+        debugger;
         var formData = new FormData();
         formData.append('user', user);
         formData.append('name', $("#id_name").val());
@@ -219,7 +218,6 @@ function create_body_and_modal(data, table_body_id){
     var input, label, form_group;
 
     for (i = 0; i < data.length; i++) {
-        debugger;
         var tr = table_body.insertRow(-1); // create a row on the main table
 
         var div_step = document.createElement("div"); // for each row create a div_step for the modal
@@ -361,11 +359,8 @@ function submit_change_table() {
 //
 function run_checks(){
     "use strict"
-    debugger;
     var headers_check = check_columns_headers(current_data_set);
-    debugger;
     var rows_checks =  check_by_row(current_data_set,headers_check);
-    debugger;
     issues_summary(headers_check,rows_checks);
     document.getElementById("x_panel_elaboration").style.display = "inline-block";
 }

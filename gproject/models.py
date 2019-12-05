@@ -28,8 +28,18 @@ class Elaboration(models.Model):
     def __unicode__(self):
         return self.name
 
+class ElaborationSettingsGroup(models.Model):
+    group_name = models.CharField(max_length=100, unique=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='user_elaboration_settings_group')
+
 class ListDB(models.Model):
     name = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True,related_name='user_listDB')
+    document_input = models.FileField(upload_to='static/documents/',blank=True, null=True)
+
+    # ElaborationSettings = models.ForeignKey(ElaborationSettings, on_delete=models.CASCADE, null=True, blank=True,
+    #                             related_name='user_elaboration_settings_list')
+
     def __str__(self):
         return self.name
 
@@ -50,15 +60,14 @@ class ElaborationSettings(models.Model):
         ('Range','Range'),
     )
     name = models.CharField(max_length=100)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_elaboration_settings')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='user_elaboration_settings')
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     option_value = models.CharField(max_length=5, default='None', choices=OPTION_VALUE)
     mandatory = models.BooleanField(default=False)
     range_from = models.FloatField(null=True,blank=True)
     range_to = models.FloatField(null=True,blank=True)
     list_DB = models.ForeignKey(ListDB, on_delete=models.CASCADE, null=True, blank=True, related_name='user_elaboration_settings_list')
-
-
+    elaboration_settings_group =  models.ForeignKey(ElaborationSettingsGroup, on_delete=models.CASCADE, related_name='elaboration_settings_group')
 
 
 

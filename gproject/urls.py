@@ -36,10 +36,16 @@ urlpatterns = [
     path('GP/elaboration_settings_new',
          GPElaborationCreateView.as_view(template_name='gproject/elaboration_settings_new.html'),
          name='gproject-gp-elaboration-settings-new'),
+    path('GP/elaboration_settings_list_add',
+         GPElaborationCreateView.as_view(template_name='gproject/elaboration_settings_list_add.html'),
+         name='gproject-gp-elaboration-settings-list-add'),
+
     path('GP/home/',GPElaborationCreateView.as_view(template_name = 'gproject/home.html'),
          name='gproject-gp-home'),
     path('GP/home_new/', GPElaborationCreateView.as_view(template_name='gproject/home_new.html'),
          name='gproject-gp-home-new'),
+    path('GP/home_new_2/', GPElaborationCreateView.as_view(template_name='gproject/home_new_2.html'),
+         name='gproject-gp-home-new-2'),
     # path('GP/wizard2',GPElaborationCreateView.as_view(template_name = 'gproject/elaboration_wizard_2.html'),
     #          name='gproject-gp-wizard2')
 
