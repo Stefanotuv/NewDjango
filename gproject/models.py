@@ -51,6 +51,9 @@ class ListValuesDB(models.Model):
     def __str__(self):
         return self.value
 
+    def get_value(self):
+        return self.value
+
 
 
 class ElaborationSettings(models.Model):

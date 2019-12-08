@@ -383,3 +383,7 @@ input:checked + .slider:before {
 .select-css option {
 	font-weight:normal;
 }
+
+.notSelectable{
+  background-color: rgba(224, 188, 57, 0.66)
+}

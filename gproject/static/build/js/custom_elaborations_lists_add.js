@@ -5,12 +5,24 @@ function post_list(user) {
 
         // console.log( 'fileSelect:' );
         // console.log( fileSelect );
+
+        var data_load =
+            [
+            // {'value': 'abc'},
+            // {'value': 'hij'}
+            'one','two'
+            ];
+
         debugger;
         var formData = new FormData();
         formData.append('user', user);
         formData.append('name', $("#id_name_list").val());
         formData.append('document_input', fileSelect, filename);
         formData.append('csrfmiddlewaretoken', $("input[name=csrfmiddlewaretoken]").val());
+        formData.append('list_value', data_load);
+        // read the excel in js
+
+        debugger;
 
         var call_results = $.ajax({
             type:'POST',

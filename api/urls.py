@@ -8,7 +8,7 @@ from django.urls.conf import include
 from .views import ElaborationListAPIView, ElaborationCreateAPIView, ElaborationGetDataFromFile, \
     ElaborationSettingsAPIView, ElaborationListColAPIView, ListDBAPIView, \
     ElaborationSettingsByUserAPIView, ListDBByUserAPIView, ElaborationSettingsGroupByUserAPIView, \
-    ElaborationSettingsByGroupAPIView,ListDBCreateListAPIView
+    ElaborationSettingsByGroupAPIView,ListDBCreateListAPIView,ListDBValueAPIView,ListDBValueCreateAPIView
     # , TableColumnsAPIView
 
 urlpatterns = [
@@ -25,6 +25,12 @@ urlpatterns = [
 
     # post data
     path('elaborations/list/add', ListDBCreateListAPIView.as_view(), name='elaborations-list-add'),
+
+    # post data
+    path('elaborations/list/value', ListDBValueAPIView.as_view(), name='elaborations-list-value'),
+
+    # post data
+    path('elaborations/list/value/add', ListDBValueCreateAPIView.as_view(), name='elaborations-list-value-add'),
 
     # get data - not in use
     path('elaborations/file/<filename>',ElaborationGetDataFromFile.as_view(),name='elaboration-data'),
