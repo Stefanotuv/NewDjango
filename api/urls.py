@@ -56,7 +56,7 @@ urlpatterns = [
     # read
     path('elaborations/settings-group/user', ElaborationSettingsGroupByUserAPIView.as_view(), name='elaboration-settings-group'),
 
-    # read the json setting file for the user
+    # allow log-in in the rest framework
     path('auth',include('rest_framework.urls')),
 
 

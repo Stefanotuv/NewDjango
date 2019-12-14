@@ -33,8 +33,7 @@ class ElaborationListAPIView(LoginRequiredMixin, generics.ListAPIView):
         user = self.request.user
         if user.is_superuser:
             return Elaboration.objects.filter()
-        else:
-            return Elaboration.objects.filter(user=user)
+
 
 def tableColumnsAPIView(request):
     temp = getattr(sys.modules[__name__], 'ElaborationSerialiser')
